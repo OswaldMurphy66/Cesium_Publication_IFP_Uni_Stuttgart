@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- text of browser's title/tab -->
+<title>Intergrated fieldwork Demo</title>
+<!-- icon displayed in the address bar -->
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Include the CesiumJS JavaScript and CSS files -->
+<script src="https://cesium.com/downloads/cesiumjs/releases/1.78/Build/Cesium/Cesium.js"></script>
+<link href="https://cesium.com/downloads/cesiumjs/releases/1.78/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+
+<!-- design of the website -->
+<!-- CSS used here -->
+<style>
+<!-- Activation of Visual tools in Cesium -->
+@import url(./Cesium/Widgets/widgets.css)
+
+*{
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+  background-color: #666;
+  height: 150px;
+  padding: 5px;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+}
+
+article {
+  float: left;
+  padding: 20px;
+  width: 70%;
+  background-color: #ccc;
+
+}
+
+nav {
+  float: right;
+  width: 30%;
+  background: #f1f1f1;
+  padding: 20px;
+  display: inline-block;
+}
+
+/* Clear floats after the columns */
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+/* Style: button */
+.button{
+  background-color: white;
+  border-radius: 5px;
+  border: 1.5px solid #000;
+  box-shadow: 0 5px 12px 0 rgba(0,0,0,0.3), 0 6px 20px 0 rgba(0,0,0,0.25);
+  color: black;
+  height: 18px;
+  position: absolute;
+  font-size: 14px;
+  line-height: 0.7;
+}
+
+.button:hover{
+  background-color: #ccc;
+}
+
+.button:active{
+  background-color: white;
+  transform: translateY(2px);
+}
+
+.button:focus{
+  background-color: #706e6e;
+  cursor: wait;
+}
+
+.button:visited{
+  background-color: #706e6e;
+}
+
+/* Style: checkbox */
+input[type="checkbox"] {
+  position: absolute;
+  left: -20px;
+}
+
+input[type="checkbox"] + label {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+input[type="checkbox"] + label:before {
+  width: 35px;
+  height: 13px;
+  border-radius: 30px;
+  border: 2px solid #ddd;
+  background-color: #EEE;
+  content: "";
+  margin-right: 10px;
+  transition: background-color 0.5s linear;
+}
+
+input[type="checkbox"] + label:after {
+  width: 13px;
+  height: 13px;
+  border-radius: 30px;
+  background-color: #fff;
+  content: "";
+  transition: margin 0.1s linear;
+  box-shadow: 0px 0px 5px #aaa;
+  position: absolute;
+  left: 3px;
+  top: 3px;
+}
+
+input[type="checkbox"]:checked + label:before {
+  background-color: #2b8718;
+}
+
+input[type="checkbox"]:checked + label:after {
+  margin: 0 0 0 22px;
+}
+
+</style>
+</head>
+
+
+
+<!-- main content of the website -->
+<body>
+    <header>
+      <h1>Visualization of Stadtmitte Campus <br> </h1>
+    </header>
+
+<section>
+    <!-- checkboxes/buttons -->
+    <nav>
+        <b>Point Clouds</b>
+      <br>
+        <input type="checkbox" id="Unidemo_button" onclick="Check_PC()" checked="true"> <label for="Unidemo_button"> Demo for Uni Stuttgart </label>
+        <button class="button" id="zoom_Unidemo" style="position: absolute; right: 20px;" onclick="zoomUnidemo()" > Zoom </button>
+      <br>
+      <br>
+        <b>NOTE: </b>Loading the trajectories takes a few moments.
+      <br>
+      <br>
+    </nav>
+
+
+    <!-- Cesium Viewer -->
+    <article>
+        <div id="cesiumContainer" style="width: 100%; height:600px"></div>
+    
+        <script>
+            //default access token from my ion account
+            Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMjJlMDA0Zi01MjczLTQ3MjAtYTEyYS1mNWY3NjI0NDgxMzYiLCJpZCI6OTQzNTgsImlhdCI6MTY1MjkwMDIxN30.Irz7lx9hf8nDgJtHCD_2XXzNOY2giijRxZdNqLjD7HU';
+            // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
+            var viewer = new Cesium.Viewer('cesiumContainer',{
+              terrainProvider: new Cesium.CesiumTerrainProvider({
+                url: Cesium.IonResource.fromAssetId(1),
+              }),
+              imageryProvider: Cesium.createWorldImagery({
+                style: Cesium.IonWorldImageryStyle.AERIAL
+              })
+            });
+             // Load Cesium World Terrain
+            viewer.terrainProvider = Cesium.createWorldTerrain({
+              requestWaterMask : true, // required for water effects
+              requestVertexNormals : true // required for terrain lighting
+            });
+             // Enable depth testing so things behind the terrain disappear.
+            viewer.scene.globe.depthTestAgainstTerrain = true;
+			
+			
+            //add point cloud
+            var pc_unidemo = viewer.scene.primitives.add(
+              new Cesium.Cesium3DTileset({
+                url: Cesium.IonResource.fromAssetId(1056684),
+              })
+            );
+			
+            ////mouse events capture
+            //var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+            //handler.setInputAction(function(movement) {}, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+            //get Lat Lon coordinates of mouse position
+			//var cartesian = viewer.camera.pickEllipsoid(movement.endPosition, scene.globe.ellipsoid);
+			//if (cartesian) {
+			//	var cartographic = Cesium.Cartographic.fromCartesian(cartesian);
+			//	var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(2);
+			//	var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(2);
+			//	entity.position = cartesian;
+			//}
+
+            //function for checkbox buttom
+            function Check_PC(){
+              //Show/hide point cloud for demo
+              if (document.getElementById('Unidemo_button').checked == true) { //if the buttons is checked
+                pc_unidemo.show = true;// make the point cloud visible
+              }
+              else {
+                pc_unidemo.show = false;// close the point cloud
+              }
+            }
+
+
+
+            //function for zoom buttom
+            function zoomUnidemo(){
+              viewer.zoomTo(pc_unidemo); // zoom to the tileset
+            };
+        </script>
+    </article>
+</section>
+
+    <footer>
+      <p>This Website was created by WP8 in intergrated fieldwork 2022 conducted at the University of Stuttgart.</p>
+    </footer>     
+</body>
+</html>

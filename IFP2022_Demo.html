@@ -155,7 +155,7 @@ input[type="checkbox"]:checked + label:after {
 <!-- main content of the website -->
 <body>
     <header>
-      <h1>Visualization of Stadtmitte Campus <br> </h1>
+      <h1> Visualization of Stadtmitte Campus <br> </h1>
     </header>
 
 <section>
@@ -206,9 +206,7 @@ input[type="checkbox"]:checked + label:after {
             );
 			
 			
-			// Adding polygon based in positions
-            // var viewer = new Cesium.Viewer("cesiumContainer");
-            
+			// Adding polygon: rectangle landing areas based in positions            
             var greenPolygon_1 = viewer.entities.add({
               name: "Landing area 1",
               polygon: {
@@ -248,8 +246,45 @@ input[type="checkbox"]:checked + label:after {
 			    verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
 			    disableDepthTestDistance : 10000.0
 			};
-            viewer.zoomTo(viewer.entities); 
-            
+			
+			// Draw an ellipse for city area which planes should avoid 
+            var entity = viewer.entities.add({
+                    name: "City area",
+                    // indicating center of the ellipse
+                    position: Cesium.Cartesian3.fromDegrees( 9.406917946333378,48.519638478928805),
+                    ellipse: {
+                        show: true,
+                        semiMajorAxis: 700.0, // semi major axis
+                        semiMinorAxis: 700.0, // semi minor axis
+                        height: 0, // height above reference surface
+                                     //default: HeightReference.NONE
+                                     // NONE:	absolute position；
+									 // CLAMP_TO_GROUND:	fixed on ground；
+									 // RELATIVE_TO_GROUND:  relative height to the reference surface
+                        heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
+                        extrudedHeight: 0.0, 
+                        extrudedHeightReference: Cesium.HeightReference.CLAMP_TO_GROUND, 
+                        // rotation: Cesium.Math.toRadians(45), 
+						// let ellipse rotate from north
+                        stRotation: 0.0, //  let ellipse rotate from north, anti clockwise
+                        granularity: Cesium.Math.RADIANS_PER_DEGREE, 
+                        fill: true, 
+                        material: Cesium.Color.RED.withAlpha(0.2),
+                        outline: true, 
+                        outlineColor: Cesium.Color.DARK_RED,
+                        outlineWidth: 200000.0,
+                        numberOfVerticalLines: 16, // number of lines alongside perimeter
+                        shadows: Cesium.ShadowMode.DISABLED,
+                        // distanceDisplayCondition: new Cesium.DistanceDisplayCondition(
+                        //   1.0e3,
+                        //   2.0e3
+                        // ),
+                        classificationType: Cesium.ClassificationType.BOTH,
+                    },
+                });
+				viewer.zoomTo(viewer.entities);
+				
+
             //function for checkbox buttom
             function Check_PC(){
               //Show/hide point cloud for demo
@@ -260,6 +295,9 @@ input[type="checkbox"]:checked + label:after {
                 pc_unidemo.show = false;// close the point cloud
               }
             }
+			
+			
+			
 
 
             //function for zoom buttom

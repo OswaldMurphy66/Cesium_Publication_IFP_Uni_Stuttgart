@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- text of browser's title/tab -->
+<title>Hysolar Building Visualization</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Cesium Libary -->
+<script src="https://cesium.com/downloads/cesiumjs/releases/1.78/Build/Cesium/Cesium.js"></script>
+<link href="https://cesium.com/downloads/cesiumjs/releases/1.78/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+
+<!-- design of the website -->
+<!-- CSS used here -->
+<style>
+*{
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the header */
+header {
+  background-color: #666;
+  height: 150px;
+  padding: 5px;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+}
+
+article {
+  float: left;
+  padding: 20px;
+  width: 70%;
+  background-color: #ccc;
+
+}
+
+nav {
+  float: right;
+  width: 30%;
+  background: #f1f1f1;
+  padding: 20px;
+  display: inline-block;
+}
+
+/* Clear floats after the columns */
+section::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Style the footer */
+footer {
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+/* Style: button */
+.button{
+  background-color: white;
+  border-radius: 5px;
+  border: 1.5px solid #000;
+  box-shadow: 0 5px 12px 0 rgba(0,0,0,0.3), 0 6px 20px 0 rgba(0,0,0,0.25);
+  color: black;
+  height: 18px;
+  position: absolute;
+  font-size: 14px;
+  line-height: 0.7;
+}
+
+.button:hover{
+  background-color: #ccc;
+}
+
+.button:active{
+  background-color: white;
+  transform: translateY(2px);
+}
+
+.button:focus{
+  background-color: #706e6e;
+  cursor: wait;
+}
+
+.button:visited{
+  background-color: #706e6e;
+}
+
+/* Style: checkbox */
+input[type="checkbox"] {
+  position: absolute;
+  left: -20px;
+}
+
+input[type="checkbox"] + label {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+input[type="checkbox"] + label:before {
+  width: 35px;
+  height: 13px;
+  border-radius: 30px;
+  border: 2px solid #ddd;
+  background-color: #EEE;
+  content: "";
+  margin-right: 10px;
+  transition: background-color 0.5s linear;
+}
+
+input[type="checkbox"] + label:after {
+  width: 13px;
+  height: 13px;
+  border-radius: 30px;
+  background-color: #fff;
+  content: "";
+  transition: margin 0.1s linear;
+  box-shadow: 0px 0px 5px #aaa;
+  position: absolute;
+  left: 3px;
+  top: 3px;
+}
+
+input[type="checkbox"]:checked + label:before {
+  background-color: #2b8718;
+}
+
+input[type="checkbox"]:checked + label:after {
+  margin: 0 0 0 22px;
+}
+
+</style>
+</head>
+
+
+<!-- main content of the website -->
+<body>
+<header>
+  <h1>Visualization of the Hysolar Building <br> with Cesium</h1>
+</header>
+
+<section>
+	<!-- checkboxes/buttons -->
+  <nav>
+  	<b>Point Clouds</b>
+    <br>
+      <input type="checkbox" id="outdoor_button" onclick="Check_PC()" checked="true"> <label for="outdoor_button"> Outdoor - ZEB Horizon </label>
+      <button class="button" id="zoom_outdoor" style="position: absolute; right: 20px;" onclick="zoomOutdoor()" > Zoom </button>
+    <br>
+      <input type="checkbox" id="UAVnTLS_button" onclick="Check_PC()" > <label for="UAVnTLS_button"> Outdoor - UAV & TLS (WP5)</label> &emsp;&emsp;&nbsp;&nbsp;&nbsp;
+      <button class="button" id="zoom_UAVnTLS" style="position: absolute; right: 20px;" onclick="zoomUAVnTLS()" > Zoom </button>
+    <br>
+      <input type="checkbox" id="towerUAV_button" onclick="Check_PC()" > <label for="towerUAV_button"> Sports Field UAV (WP5)</label> &emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;
+      <button class="button" id="zoom_towerUAV" style="position: absolute; right: 20px;" onclick="zoomTowerUAV()" > Zoom </button>
+    <br>
+      <input type="checkbox" id="hysolar_button" onclick="Check_PC()" > <label for="hysolar_button"> Hysolar Building </label> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;
+      <button class="button" id="zoom_hysolar" style="position: absolute; right: 20px;" onclick="zoomHysolar()" > Zoom </button>
+    <br>
+      <input type="checkbox" id="indoor_button" onclick="Check_PC()" > <label for="indoor_button"> Hysolar Building Indoors </label>  &emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+      <button class="button" id="zoom_indoor" style="position: absolute; right: 20px;" onclick="zoomIndoor()" > Zoom </button>
+    <br>
+      <input type="checkbox" id="tower_button" onclick="Check_PC()" > <label for="tower_button"> Climbing Tower </label> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+      <button class="button" id="zoom_tower" style="position: absolute; right: 20px;" onclick="zoomTower()" > Zoom </button>
+    <br>
+    <br>
+    <b>Meshes</b>
+    <br>
+      <input type="checkbox" id="meshHysolar_button" onclick="Check_Mesh()" > <label for="meshHysolar_button">Hysolar Building (WP5) </label> &emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button class="button" id="zoom_meshHysolar" style="position: absolute; right: 20px;" onclick="zoomMeshHysolar()" > Zoom </button>
+  <br>
+    <br>
+    <b>Orthophotos</b>
+    <br>
+      <input type="checkbox" id="orthoHysolar_button" onclick="Check_Ortho()" > <label for="orthoHysolar_button"> Hysolar Building (WP5) </label> &emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <button class="button" id="zoom_orthoHysolar" style="position: absolute; right: 20px;" onclick="zoomOrthoHysolar()" > Zoom </button>
+    <br>
+      <input type="checkbox" id="orthoTower_button" onclick="Check_Ortho()" > <label for="orthoTower_button"> Sports Field (WP5) </label> &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+      <button class="button" id="zoom_orthoTower" style="position: absolute; right: 20px;" onclick="zoomOrthoTower()" > Zoom </button>
+    <br>
+    <br>
+    <b>Trajectories</b>
+    <br>
+      <input type="checkbox" id="traj_wp4_button" onclick="Check_Traj_WP4()" > <label for="traj_wp4_button"> Trajectory of RC Car (WP4) </label>
+    <br>
+      <input type="checkbox" id="traj_wp6_button" onclick="Check_Traj_WP6()" > <label for="traj_wp6_button"> Trajectory of RC Car (WP6) </label>
+    <br>
+      <input type="checkbox" id="pc_traj_button" onclick="Check_PC()" > <label for="pc_traj_button"> Point Cloud of Trajectory </label> &emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;
+      <button class="button" id="zoom_pc_traj" style="position: absolute; right: 20px;" onclick="zoomPCtraj()" > Zoom </button>
+    <br>
+    <br>
+    <b>NOTE: </b>Loading the trajectories takes a few moments.
+    <br>
+    <br>
+  </nav>
+
+
+	<!-- Cesium Viewer -->
+  <article>
+    <div id="cesiumContainer" style="width: 100%; height:600px"></div>
+	  <script>
+		// the acces token from cesium website
+		Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxZTIxZDg4My00YjJkLTQzN2QtYmMxOC05Njk4ZGFkZTQzN2YiLCJpZCI6MTU1ODQsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1NjgyMTc1MjN9.UDZ_I4jPXqWed_FjHIELbp016IuCNMBzsPexMe3jM3k';
+
+		// create a new viewer with a DSM and base image
+	    var viewer = new Cesium.Viewer("cesiumContainer", {
+		  automaticallyTrackDataSourceClocks: false,	// has to be false for trajectory
+		  terrainProvider: new Cesium.CesiumTerrainProvider({  // this is the DSM -> if no DSM available: set to "1"
+		    url: Cesium.IonResource.fromAssetId(1),	// Hessigheim: 109141
+		  }),
+		  imageryProvider: Cesium.createWorldImagery({
+		    style: Cesium.IonWorldImageryStyle.AERIAL   // this is the Base image
+		  })
+	    });
+
+		// ADD point clouds
+		var pc_outdoor = new Cesium.Cesium3DTileset({
+		  url: Cesium.IonResource.fromAssetId(529583),   // this AssetID links to the files on the cesium ion server - Stadtgarten: 487299 - Hessigheim: 133178
+		});
+		viewer.scene.primitives.add(pc_outdoor);
+
+    var pc_towerUAV = new Cesium.Cesium3DTileset({
+		  url: Cesium.IonResource.fromAssetId(529410),   // this AssetID links to the files on the cesium ion server - Stadtgarten: 487299 - Hessigheim: 133178
+		});
+		viewer.scene.primitives.add(pc_towerUAV);
+
+    var pc_UAVnTLS = new Cesium.Cesium3DTileset({
+		  url: Cesium.IonResource.fromAssetId(529434),   // this AssetID links to the files on the cesium ion server - Stadtgarten: 487299 - Hessigheim: 133178
+		});
+		viewer.scene.primitives.add(pc_UAVnTLS);
+
+    var pc_hysolar = new Cesium.Cesium3DTileset({
+		  url: Cesium.IonResource.fromAssetId(529081),   // this AssetID links to the files on the cesium ion server - Stadtgarten: 487299 - Hessigheim: 133178
+		});
+		viewer.scene.primitives.add(pc_hysolar);
+
+    var pc_indoor = new Cesium.Cesium3DTileset({
+		  url: Cesium.IonResource.fromAssetId(527334),   // this AssetID links to the files on the cesium ion server - Stadtgarten: 487299 - Hessigheim: 133178
+		});
+		viewer.scene.primitives.add(pc_indoor);
+
+    var pc_tower = new Cesium.Cesium3DTileset({
+		  url: Cesium.IonResource.fromAssetId(527268),   // this AssetID links to the files on the cesium ion server - Stadtgarten: 487299 - Hessigheim: 133178
+		});
+		viewer.scene.primitives.add(pc_tower);
+
+    var pc_traj = new Cesium.Cesium3DTileset({
+		  url: Cesium.IonResource.fromAssetId(528497),   // this AssetID links to the files on the cesium ion server - Stadtgarten: 487299 - Hessigheim: 133178
+		});
+		viewer.scene.primitives.add(pc_traj);
+
+    ///////////////////////////////////////////////////////////////
+		// ADD a mesh
+		var mesh_Hysolar = new Cesium.Cesium3DTileset({
+		  url: Cesium.IonResource.fromAssetId(529632),   // this AssetID links to the files on the cesium ion server - Hessigheim: 109738
+		});
+		viewer.scene.primitives.add(mesh_Hysolar);
+
+    ///////////////////////////////////////////////////////////////
+		// ADD an image
+		var ortho_Hysolar = viewer.imageryLayers.addImageryProvider(
+		  new Cesium.IonImageryProvider({assetId: 529088 }) // Hessigheim: 133125
+		);
+
+    var ortho_Tower = viewer.imageryLayers.addImageryProvider(
+		  new Cesium.IonImageryProvider({assetId: 529110 }) // Hessigheim: 133125
+		);
+
+    ///////////////////////////////////////////////////////////////
+		// ADD an trajectory
+		var options = { // setting options
+		camera : viewer.scene.camera,
+		canvas : viewer.scene.canvas,
+        clampToGround: true,
+    };
+
+		var traj_wp4  = Cesium.IonResource.fromAssetId(527295)
+		  .then(function (resource) {
+			return Cesium.KmlDataSource.load(resource,options); // options used here
+		});
+
+    var traj_wp6  = Cesium.IonResource.fromAssetId(528830)
+		  .then(function (resource) {
+			return Cesium.KmlDataSource.load(resource); // options used here
+		});
+
+    ///////////////////////////////////////////////////////////////
+		// set time bar
+		// make sure that "automaticallyTrackDataSourceClocks: false" is set in viewer contructor <- already set "false"
+		var start = Cesium.JulianDate.fromIso8601("2021-01-01T00:00:00Z");
+		var stop = Cesium.JulianDate.fromIso8601("2021-01-01T00:22:00Z");
+
+		var clock = viewer.clock;
+		clock.startTime = start;
+		clock.currentTime = start;
+		clock.stopTime = stop;
+		clock.clockRange = Cesium.ClockRange.LOOP_STOP;
+		clock.multiplier = 100;
+		clock.shouldAnimate = true; // if true the animation will start on load --> Animation can be started manually
+
+
+
+		// function for the checkboxes/buttons
+		function Check_PC(){
+      // Show/Hide PointCloud outdoor
+		  if (document.getElementById('outdoor_button').checked == true) { // k if the buttons is checked
+		  pc_outdoor.show = true; // make the point cloud visible
+		  }
+		  else {
+			pc_outdoor.show = false;
+			}
+
+      // Show/Hide PointCloud outdoorTLS
+		  if (document.getElementById('towerUAV_button').checked == true) { // k if the buttons is checked
+		  pc_towerUAV.show = true; // make the point cloud visible
+		  }
+		  else {
+			pc_towerUAV.show = false; // hide point cloud
+			}
+
+      // Show/Hide PointCloud outdoorUAV
+		  if (document.getElementById('UAVnTLS_button').checked == true) { // k if the buttons is checked
+		  pc_UAVnTLS.show = true; // make the point cloud visible
+		  }
+		  else {
+			pc_UAVnTLS.show = false; // hide point cloud
+			}
+
+      // Show/Hide PointCloud Hysolar Building
+		  if (document.getElementById('hysolar_button').checked == true) { // k if the buttons is checked
+		  pc_hysolar.show = true; // make the point cloud visible
+      //pc_indoor.show = false; // hide indoor
+		  }
+		  else {
+			pc_hysolar.show = false; // hide point cloud
+			}
+
+      // Show/Hide PointCloud Indoor
+		  if (document.getElementById('indoor_button').checked == true) { // k if the buttons is checked
+		  pc_indoor.show = true; // make the point cloud visible
+      //pc_hysolar.show = false; // hide roof of Building
+		  }
+		  else {
+			pc_indoor.show = false; // hide point cloud
+			}
+
+			// Show/Hide PointCloud Tower
+		  if (document.getElementById('tower_button').checked == true) { // k if the buttons is checked
+		  pc_tower.show = true; // make the point cloud visible
+		  }
+		  else {
+			pc_tower.show = false; // hide point cloud
+			}
+
+      // Show/Hide PointCloud Trajectory
+		  if (document.getElementById('pc_traj_button').checked == true) { // k if the buttons is checked
+		  pc_traj.show = true; // make the point cloud visible
+		  }
+		  else {
+			pc_traj.show = false; // hide point cloud
+			}
+		};
+
+    function Check_Mesh(){
+      // Show/Hide Mesh
+		  if (document.getElementById('meshHysolar_button').checked == true) { // k if the buttons is checked
+			mesh_Hysolar.show = true; // make the mesh visible
+		  }
+		  else {
+			mesh_Hysolar.show = false; // hide mesh
+		  }
+    }
+
+    function Check_Ortho(){
+      // Show/Hide Mesh
+		  if (document.getElementById('orthoHysolar_button').checked == true) { // k if the buttons is checked
+			ortho_Hysolar.show = true; // make the image visible
+		  }
+		  else {
+			ortho_Hysolar.show = false; // hide image
+		  }
+
+      if (document.getElementById('orthoTower_button').checked == true) { // k if the buttons is checked
+			ortho_Tower.show = true; // make the image visible
+		  }
+		  else {
+			ortho_Tower.show = false; // hide image
+		  }
+    }
+
+    // execute CHECK() and other function to show/hide the initial assets
+    zoomOutdoor()
+    Check_PC()
+    Check_Mesh()
+    Check_Ortho()
+
+
+
+    function Check_Traj_WP4(){
+      // Show/Hide Trajectory
+		  if (document.getElementById('traj_wp4_button').checked == true) { // k if the buttons is checked
+        viewer.zoomTo(pc_traj);
+
+			  Cesium.when(traj_wp4, function(dataSource1){
+				viewer.dataSources.add(dataSource1); // make the trajectory visible
+				});
+		  }
+
+		  if (document.getElementById('traj_wp4_button').checked == false) {
+			  Cesium.when(traj_wp4, function(dataSource1){
+				viewer.dataSources.remove(dataSource1); // hide the trajectory
+				});
+		  }
+    }
+
+    function Check_Traj_WP6(){
+      // Show/Hide Trajectory
+		  if (document.getElementById('traj_wp6_button').checked == true) { // k if the buttons is checked
+			  Cesium.when(traj_wp6, function(dataSource2){
+				viewer.dataSources.add(dataSource2); // make the trajectory visible
+				viewer.zoomTo(dataSource2);		// zoom out to see full trajectory
+				});
+		  }
+
+		  if (document.getElementById('traj_wp6_button').checked == false) {
+			  Cesium.when(traj_wp6, function(dataSource2){
+				viewer.dataSources.remove(dataSource2); // hide the trajectory
+				});
+		  }
+    }
+
+
+
+    // zoom-functions for zoom-button
+    function zoomOutdoor(){
+      viewer.zoomTo(pc_outdoor); // zoom to the tileset
+    };
+
+    function zoomTowerUAV(){
+      viewer.zoomTo(pc_towerUAV); // zoom to the tileset
+    };
+
+    function zoomUAVnTLS(){
+      viewer.zoomTo(pc_UAVnTLS); // zoom to the tileset
+    };
+
+    function zoomHysolar(){
+      viewer.zoomTo(pc_hysolar); // zoom to the tileset
+    };
+
+    function zoomIndoor(){
+      viewer.zoomTo(pc_indoor); // zoom to the tileset
+    };
+
+    function zoomTower(){
+      viewer.zoomTo(pc_tower); // zoom to the tileset
+    };
+
+    function zoomMeshHysolar(){
+      viewer.zoomTo(mesh_Hysolar); // zoom to the tileset
+    };
+
+    function zoomOrthoHysolar(){
+      viewer.zoomTo(ortho_Hysolar); // zoom to the tileset
+    };
+
+    function zoomOrthoTower(){
+      viewer.zoomTo(ortho_Tower); // zoom to the tileset
+    };
+
+    function zoomPCtraj(){
+      viewer.zoomTo(pc_traj); // zoom to the tileset
+    };
+
+
+	  </script>
+  </article>
+</section>
+
+
+
+
+<footer>
+  <p>This Website was created by WP6 in context of a student project conducted at the University of Stuttgart.</p>
+</footer>
+
+</body>
+</html>

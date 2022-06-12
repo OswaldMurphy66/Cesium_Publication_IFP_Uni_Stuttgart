@@ -205,18 +205,51 @@ input[type="checkbox"]:checked + label:after {
               })
             );
 			
-            ////mouse events capture
-            //var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
-            //handler.setInputAction(function(movement) {}, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
-            //get Lat Lon coordinates of mouse position
-			//var cartesian = viewer.camera.pickEllipsoid(movement.endPosition, scene.globe.ellipsoid);
-			//if (cartesian) {
-			//	var cartographic = Cesium.Cartographic.fromCartesian(cartesian);
-			//	var longitudeString = Cesium.Math.toDegrees(cartographic.longitude).toFixed(2);
-			//	var latitudeString = Cesium.Math.toDegrees(cartographic.latitude).toFixed(2);
-			//	entity.position = cartesian;
-			//}
-
+			
+			// Adding polygon based in positions
+            // var viewer = new Cesium.Viewer("cesiumContainer");
+            
+            var greenPolygon_1 = viewer.entities.add({
+              name: "Landing area 1",
+              polygon: {
+                hierarchy: Cesium.Cartesian3.fromDegreesArray([ 9.397084,48.529799,9.397030346347082,48.52954313865634, 9.402249044248864, 48.5290861766583, 9.402315173526649,48.52933265154202]),
+                material: Cesium.Color.GREEN.withAlpha(0.7),
+              },
+            });
+            greenPolygon_1.position=Cesium.Cartesian3.fromDegrees(9.399841076770093,48.52944079933089);
+            greenPolygon_1.label={
+                // position:
+                text:'landing area 1',
+                color : Cesium.Color.fromCssColorString('#fff'),
+                font:'normal 32px MicroSoft YaHei',
+                showBackground : true,
+                scale : 0.5,
+                horizontalOrigin : Cesium.HorizontalOrigin.LEFT_CLICK,
+                verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
+                disableDepthTestDistance : 10000.0,
+            };
+            
+			var greenPolygon_2 = viewer.entities.add({
+			  name: "Landing area 2",
+			  polygon: {
+			    hierarchy: Cesium.Cartesian3.fromDegreesArray([9.392909927976849,48.529241474720855,9.392933581948556,48.52896411764348, 9.401435162641437,48.529173138888915, 9.401350004491292,48.52940537604243]),
+			    material: Cesium.Color.GREEN.withAlpha(0.7),
+			  },
+			});
+			greenPolygon_2.position=Cesium.Cartesian3.fromDegrees(9.39670935301936,48.529223878988454);
+			greenPolygon_2.label={
+			    // position:
+			    text:'landing area 2',
+			    color : Cesium.Color.fromCssColorString('#fff'),
+			    font:'normal 32px MicroSoft YaHei',
+			    showBackground : true,
+			    scale : 0.5,
+			    horizontalOrigin : Cesium.HorizontalOrigin.LEFT_CLICK,
+			    verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
+			    disableDepthTestDistance : 10000.0
+			};
+            viewer.zoomTo(viewer.entities); 
+            
             //function for checkbox buttom
             function Check_PC(){
               //Show/hide point cloud for demo
@@ -229,11 +262,28 @@ input[type="checkbox"]:checked + label:after {
             }
 
 
-
             //function for zoom buttom
             function zoomUnidemo(){
               viewer.zoomTo(pc_unidemo); // zoom to the tileset
             };
+			
+			// Make Label fonts clear
+			//this.labelInfo=this.viewer.entities.add(new Cesium.Entity());
+			//this.labelInfo.position=position;
+			//this.labelInfo.label={
+				//   show:true,
+			   //         showBackground:true,
+			  //          backgroundColor:Cesium.Color.fromCssColorString('#000'),
+			 //           scale:0.5,
+			  //          font:'normal 32px MicroSoft YaHei',
+			 //           text:`blabla~~`,
+			  //          pixelOffset :new Cesium.Cartesian2(-120, -100),
+			  //          horizontalOrigin:Cesium.HorizontalOrigin.LEFT
+			//}
+			
+			this.viewer.scene.fxaa = false;// 关闭fxaa  最新的cesium已经将fxaa移到PostProcessStageCollection
+
+			
         </script>
     </article>
 </section>

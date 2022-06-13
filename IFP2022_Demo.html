@@ -161,12 +161,37 @@ input[type="checkbox"]:checked + label:after {
 <section>
     <!-- checkboxes/buttons -->
     <nav>
-        <b>Point Clouds</b>
-      <br>
-        <input type="checkbox" id="Unidemo_button" onclick="Check_PC()" checked="true"> <label for="Unidemo_button"> Demo for Uni Stuttgart </label>
-        <button class="button" id="zoom_Unidemo" style="position: absolute; right: 20px;" onclick="zoomUnidemo()" > Zoom </button>
-      <br>
-      <br>
+        <b>3D Point Clouds</b>
+        <br>
+        <br>
+          <input type="checkbox" id="pc1_button" onclick="Check_PC1()" checked="true"> <label for="pc1_button"> Demo for Uni Stuttgart </label>
+          <button class="button" id="zoom_pc1" style="position: absolute; right: 20px;" onclick="zoompc1()" > Zoom </button>
+        <br>
+        <br>
+          <input type="checkbox" id="pc2_button" onclick="Check_PC2()" > <label for="pc2_button"> Demo indoor </label>
+          <button class="button" id="zoom_pc2" style="position: absolute; right: 20px;" onclick="zoompc2()" > Zoom </button>
+        <br>
+        <br>
+          <input type="checkbox" id="pc3_button" onclick="Check_PC3()"> <label for="pc3_button"> Demo playgronud </label>
+          <button class="button" id="zoom_pc3" style="position: absolute; right: 20px;" onclick="zoompc3()" > Zoom </button>
+        <br>
+        <br>
+        <br>
+          <b>Orthophotos</b>
+        <br>
+        <br>
+          <input type="checkbox" id="ortho1_button" onclick="Check_OP1()" > <label for="ortho1_button"> Airport brief</label>
+          <button class="button" id="zoom_ortho1" style="position: absolute; right: 20px;" onclick="zoomortho1()" > Zoom </button>
+        <br>
+        <br>
+          <b>Polygon</b>
+        <br>
+        <br>
+          <input type="checkbox" id="Runway_button" onclick="Check_RW()" > <label for="Runway_button"> Anflugblatt </label>
+          <button class="button" id="zoom_Runway" style="position: absolute; right: 20px;" onclick="zoomRunway()" > Zoom </button>
+        <br>      
+        <br>
+        <br>
         <b>NOTE: </b>Loading the trajectories takes a few moments.
       <br>
       <br>
@@ -185,6 +210,9 @@ input[type="checkbox"]:checked + label:after {
               terrainProvider: new Cesium.CesiumTerrainProvider({
                 url: Cesium.IonResource.fromAssetId(1),
               }),
+              // terrainProvider: new Cesium.CesiumTerrainProvider({
+              //   url: Cesium.IonResource.fromAssetId(1121911),
+              // }),//load local terrain --- ???need to be corrected
               imageryProvider: Cesium.createWorldImagery({
                 style: Cesium.IonWorldImageryStyle.AERIAL
               })
@@ -199,10 +227,28 @@ input[type="checkbox"]:checked + label:after {
 			
 			
             //add point cloud
-            var pc_unidemo = viewer.scene.primitives.add(
+            var pc_demo1 = viewer.scene.primitives.add(
               new Cesium.Cesium3DTileset({
                 url: Cesium.IonResource.fromAssetId(1056684),
               })
+            );
+
+            var pc_demo2 = viewer.scene.primitives.add(
+              new Cesium.Cesium3DTileset({
+                url: Cesium.IonResource.fromAssetId(1113299),
+              })
+            );
+
+            var pc_demo3 = viewer.scene.primitives.add(
+              new Cesium.Cesium3DTileset({
+                url: Cesium.IonResource.fromAssetId(1113301),
+              })
+            );
+
+
+            //add orthophotos
+            var ortho_demo1 = viewer.imageryLayers.addImageryProvider(
+              new Cesium.IonImageryProvider({ assetId: 1113345 })
             );
 			
 			
@@ -283,26 +329,114 @@ input[type="checkbox"]:checked + label:after {
                     },
                 });
 				viewer.zoomTo(viewer.entities);
+
+
+            // draw rectangle---???need tobe corrected
+            var avoid2 = viewer.entities.add({
+              name: "Avoid - traffic pattern EDSG",//Garbenstetten flugplatz
+              rectangle: {
+                coordinates: Cesium.Rectangle.fromDegrees(9.412508650053288,48.54343667939448, 9.43358457143229,48.54759972339579),
+                material: Cesium.Color.RED.withAlpha(0.5),
+                Rotation: Cesium.Math.toRadians(50),//---???
+              },
+            });
+            avoid2.position=Cesium.Cartesian3.fromDegrees(9.412508650053288,48.54343667939448);
+            //avoid2.style.borderRadius = "25px";//---???
+
+
+            //draw line
+            var Segelflug = viewer.entities.add({
+              name: "Segelflug - 2970ft/900m",
+              wall :{
+                positions : Cesium.Cartesian3.fromDegreesArray(
+                  [9.39703519151607,48.529622848194435, 
+                   9.386956349001773,48.530292490420834,
+                   9.388908997194635,48.53648757756843,
+                   9.407899037160616,48.53512358676029,
+                   9.406954502423504,48.528754432235466,
+                   9.402340033389647,48.529216576652004]),
+                maximumHeights: [900,900,900,900,900,900],
+                minumumHeights: [0,0,0,0,0,0],
+                material: Cesium.Color.BLUE.withAlpha(0.5),
+              },
+            });
+
+            var Motorflug = viewer.entities.add({
+              name: "Motorflug - 3200ft/975m",
+              wall :{
+                positions : Cesium.Cartesian3.fromDegreesArray(
+                  [9.39703519151607,48.529622848194435, 
+                   9.37824396517381,48.53135453585247, 
+                   9.379830468769919,48.54176894670979,
+                   9.42008506241363,48.538955968904105,
+                   9.418325533250623, 48.52821407020955,
+                   9.402340033389647,48.529216576652004]),
+                maximumHeights: [975,975,975,975,975,975],
+                minumumHeights: [0,0,0,0,0,0],
+                material: Cesium.Color.BLUE.withAlpha(0.5),
+              },
+            });
+
 				
 
             //function for checkbox buttom
-            function Check_PC(){
+            function Check_PC1(){
               //Show/hide point cloud for demo
-              if (document.getElementById('Unidemo_button').checked == true) { //if the buttons is checked
-                pc_unidemo.show = true;// make the point cloud visible
+              if (document.getElementById('pc1_button').checked == true) { //if the buttons is checked
+                pc_demo1.show = true;// make the point cloud visible
               }
               else {
-                pc_unidemo.show = false;// close the point cloud
+                pc_demo1.show = false;// close the point cloud
               }
             }
-			
-			
-			
+
+            function Check_PC2(){
+              //Show/hide point cloud for demo
+              if (document.getElementById('pc2_button').checked == true) { //if the buttons is checked
+                pc_demo2.show = true;// make the point cloud visible
+              }
+              else {
+                pc_demo2.show = false;// close the point cloud
+              }
+            }
+
+            function Check_PC3(){
+              //Show/hide point cloud for demo
+              if (document.getElementById('pc3_button').checked == true) { //if the buttons is checked
+                pc_demo3.show = true;// make the point cloud visible
+              }
+              else {
+                pc_demo3.show = false;// close the point cloud
+              }
+            }
+
+            function Check_OP1(){
+              //Show/hide point cloud for demo
+              if (document.getElementById('ortho1_button').checked == true) { //if the buttons is checked
+                ortho_demo1.show = true;// make the point cloud visible
+              }
+              else {
+                ortho_demo1.show = false;// close the point cloud
+              }
+            }
+
 
 
             //function for zoom buttom
-            function zoomUnidemo(){
-              viewer.zoomTo(pc_unidemo); // zoom to the tileset
+            function zoompc1(){
+              viewer.zoomTo(pc_demo1); // zoom to the tileset
+            };
+
+            function zoompc2(){
+              viewer.zoomTo(pc_demo2); // zoom to the tileset
+            };
+
+            function zoompc3(){
+              viewer.zoomTo(pc_demo3); // zoom to the tileset
+            };
+
+            function zoomortho1(){
+              viewer.zoomTo(ortho_demo1); // zoom to the tileset
             };
 			
 			// Make Label fonts clear

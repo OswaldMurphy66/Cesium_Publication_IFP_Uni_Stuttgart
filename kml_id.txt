@@ -1,0 +1,7 @@
+Avoiding_Traffic：	1137095
+Avoiding_Urban_Area：	1137096
+Go_Around_Course_1：	1137097
+Go_Around_Course_2：	1137098
+Landing_Area_1：		1137099
+Landing_area_2：		1137101
+Markings_Fixed_Point：	1137102

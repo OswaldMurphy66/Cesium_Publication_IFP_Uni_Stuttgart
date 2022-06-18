@@ -205,6 +205,7 @@ input[type="checkbox"]:checked + label:after {
         <script>
             //default access token from my ion account
             Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMjJlMDA0Zi01MjczLTQ3MjAtYTEyYS1mNWY3NjI0NDgxMzYiLCJpZCI6OTQzNTgsImlhdCI6MTY1MjkwMDIxN30.Irz7lx9hf8nDgJtHCD_2XXzNOY2giijRxZdNqLjD7HU';
+
             // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
             var viewer = new Cesium.Viewer('cesiumContainer',{
               terrainProvider: new Cesium.CesiumTerrainProvider({
@@ -250,98 +251,112 @@ input[type="checkbox"]:checked + label:after {
             var ortho_demo1 = viewer.imageryLayers.addImageryProvider(
               new Cesium.IonImageryProvider({ assetId: 1113345 })
             );
+
+            // Add avoiding area urban
+            (async () => {
+                try {
+                    const resource = await Cesium.IonResource.fromAssetId(1136990);
+                    const dataSource = await Cesium.KmlDataSource.load(resource, {
+                        camera: viewer.scene.camera,
+                        canvas: viewer.scene.canvas,
+                    });
+                    await viewer.dataSources.add(dataSource);
+                    await viewer.zoomTo(dataSource);
+                } catch (error) {
+                    console.log(error);
+                }
+            })();
 			
-			
-			// Adding polygon: rectangle landing areas based in positions            
-            var greenPolygon_1 = viewer.entities.add({
-              name: "Landing area 1",
-              polygon: {
-                hierarchy: Cesium.Cartesian3.fromDegreesArray([ 9.397084,48.529799,9.397030346347082,48.52954313865634, 9.402249044248864, 48.5290861766583, 9.402315173526649,48.52933265154202]),
-                material: Cesium.Color.GREEN.withAlpha(0.7),
-              },
-            });
-            greenPolygon_1.position=Cesium.Cartesian3.fromDegrees(9.399841076770093,48.52944079933089);
-            greenPolygon_1.label={
-                // position:
-                text:'landing area 1',
-                color : Cesium.Color.fromCssColorString('#fff'),
-                font:'normal 32px MicroSoft YaHei',
-                showBackground : true,
-                scale : 0.5,
-                horizontalOrigin : Cesium.HorizontalOrigin.LEFT_CLICK,
-                verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
-                disableDepthTestDistance : 10000.0,
-            };
+			//// Adding polygon: rectangle landing areas based in positions            
+   //         var greenPolygon_1 = viewer.entities.add({
+   //           name: "Landing area 1",
+   //           polygon: {
+   //             hierarchy: Cesium.Cartesian3.fromDegreesArray([ 9.397084,48.529799,9.397030346347082,48.52954313865634, 9.402249044248864, 48.5290861766583, 9.402315173526649,48.52933265154202]),
+   //             material: Cesium.Color.GREEN.withAlpha(0.7),
+   //           },
+   //         });
+   //         greenPolygon_1.position=Cesium.Cartesian3.fromDegrees(9.399841076770093,48.52944079933089);
+   //         greenPolygon_1.label={
+   //             // position:
+   //             text:'landing area 1',
+   //             color : Cesium.Color.fromCssColorString('#fff'),
+   //             font:'normal 32px MicroSoft YaHei',
+   //             showBackground : true,
+   //             scale : 0.5,
+   //             horizontalOrigin : Cesium.HorizontalOrigin.LEFT_CLICK,
+   //             verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
+   //             disableDepthTestDistance : 10000.0,
+   //         };
             
-			var greenPolygon_2 = viewer.entities.add({
-			  name: "Landing area 2",
-			  polygon: {
-			    hierarchy: Cesium.Cartesian3.fromDegreesArray([9.392909927976849,48.529241474720855,9.392933581948556,48.52896411764348, 9.401435162641437,48.529173138888915, 9.401350004491292,48.52940537604243]),
-			    material: Cesium.Color.GREEN.withAlpha(0.7),
-			  },
-			});
-			greenPolygon_2.position=Cesium.Cartesian3.fromDegrees(9.39670935301936,48.529223878988454);
-			greenPolygon_2.label={
-			    // position:
-			    text:'landing area 2',
-			    color : Cesium.Color.fromCssColorString('#fff'),
-			    font:'normal 32px MicroSoft YaHei',
-			    showBackground : true,
-			    scale : 0.5,
-			    horizontalOrigin : Cesium.HorizontalOrigin.LEFT_CLICK,
-			    verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
-			    disableDepthTestDistance : 10000.0
-			};
+			//var greenPolygon_2 = viewer.entities.add({
+			//  name: "Landing area 2",
+			//  polygon: {
+			//    hierarchy: Cesium.Cartesian3.fromDegreesArray([9.392909927976849,48.529241474720855,9.392933581948556,48.52896411764348, 9.401435162641437,48.529173138888915, 9.401350004491292,48.52940537604243]),
+			//    material: Cesium.Color.GREEN.withAlpha(0.7),
+			//  },
+			//});
+			//greenPolygon_2.position=Cesium.Cartesian3.fromDegrees(9.39670935301936,48.529223878988454);
+			//greenPolygon_2.label={
+			//    // position:
+			//    text:'landing area 2',
+			//    color : Cesium.Color.fromCssColorString('#fff'),
+			//    font:'normal 32px MicroSoft YaHei',
+			//    showBackground : true,
+			//    scale : 0.5,
+			//    horizontalOrigin : Cesium.HorizontalOrigin.LEFT_CLICK,
+			//    verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
+			//    disableDepthTestDistance : 10000.0
+			//};
 			
-			// Draw an ellipse for city area which planes should avoid 
-            var entity = viewer.entities.add({
-                    name: "City area",
-                    // indicating center of the ellipse
-                    position: Cesium.Cartesian3.fromDegrees( 9.406917946333378,48.519638478928805),
-                    ellipse: {
-                        show: true,
-                        semiMajorAxis: 700.0, // semi major axis
-                        semiMinorAxis: 700.0, // semi minor axis
-                        height: 0, // height above reference surface
-                                     //default: HeightReference.NONE
-                                     // NONE:	absolute position；
-									 // CLAMP_TO_GROUND:	fixed on ground；
-									 // RELATIVE_TO_GROUND:  relative height to the reference surface
-                        heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
-                        extrudedHeight: 0.0, 
-                        extrudedHeightReference: Cesium.HeightReference.CLAMP_TO_GROUND, 
-                        // rotation: Cesium.Math.toRadians(45), 
-						// let ellipse rotate from north
-                        stRotation: 0.0, //  let ellipse rotate from north, anti clockwise
-                        granularity: Cesium.Math.RADIANS_PER_DEGREE, 
-                        fill: true, 
-                        material: Cesium.Color.RED.withAlpha(0.2),
-                        outline: true, 
-                        outlineColor: Cesium.Color.DARK_RED,
-                        outlineWidth: 200000.0,
-                        numberOfVerticalLines: 16, // number of lines alongside perimeter
-                        shadows: Cesium.ShadowMode.DISABLED,
-                        // distanceDisplayCondition: new Cesium.DistanceDisplayCondition(
-                        //   1.0e3,
-                        //   2.0e3
-                        // ),
-                        classificationType: Cesium.ClassificationType.BOTH,
-                    },
-                });
-				viewer.zoomTo(viewer.entities);
+			//<!--// Draw an ellipse for city area which planes should avoid 
+   //         var entity = viewer.entities.add({
+   //                 name: "City area",
+   //                 // indicating center of the ellipse
+   //                 position: Cesium.Cartesian3.fromDegrees( 9.406917946333378,48.519638478928805),
+   //                 ellipse: {
+   //                     show: true,
+   //                     semiMajorAxis: 700.0, // semi major axis
+   //                     semiMinorAxis: 700.0, // semi minor axis
+   //                     height: 0, // height above reference surface
+   //                                  //default: HeightReference.NONE
+   //                                  // NONE:	absolute position；
+			//						 // CLAMP_TO_GROUND:	fixed on ground；
+			//						 // RELATIVE_TO_GROUND:  relative height to the reference surface
+   //                     heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
+   //                     extrudedHeight: 0.0, 
+   //                     extrudedHeightReference: Cesium.HeightReference.CLAMP_TO_GROUND, 
+   //                     // rotation: Cesium.Math.toRadians(45), 
+			//			// let ellipse rotate from north
+   //                     stRotation: 0.0, //  let ellipse rotate from north, anti clockwise
+   //                     granularity: Cesium.Math.RADIANS_PER_DEGREE, 
+   //                     fill: true, 
+   //                     material: Cesium.Color.RED.withAlpha(0.2),
+   //                     outline: true, 
+   //                     outlineColor: Cesium.Color.DARK_RED,
+   //                     outlineWidth: 200000.0,
+   //                     numberOfVerticalLines: 16, // number of lines alongside perimeter
+   //                     shadows: Cesium.ShadowMode.DISABLED,
+   //                     // distanceDisplayCondition: new Cesium.DistanceDisplayCondition(
+   //                     //   1.0e3,
+   //                     //   2.0e3
+   //                     // ),
+   //                     classificationType: Cesium.ClassificationType.BOTH,
+   //                 },
+   //             });
+			//	viewer.zoomTo(viewer.entities);-->
 
 
             // draw rectangle---???need tobe corrected
-            var avoid2 = viewer.entities.add({
-              name: "Avoid - traffic pattern EDSG",//Garbenstetten flugplatz
-              rectangle: {
-                coordinates: Cesium.Rectangle.fromDegrees(9.412508650053288,48.54343667939448, 9.43358457143229,48.54759972339579),
-                material: Cesium.Color.RED.withAlpha(0.5),
-                Rotation: Cesium.Math.toRadians(50),//---???
-              },
-            });
-            avoid2.position=Cesium.Cartesian3.fromDegrees(9.412508650053288,48.54343667939448);
-            //avoid2.style.borderRadius = "25px";//---???
+            //var avoid2 = viewer.entities.add({
+            //  name: "Avoid - traffic pattern EDSG",//Garbenstetten flugplatz
+            //  rectangle: {
+            //    coordinates: Cesium.Rectangle.fromDegrees(9.412508650053288,48.54343667939448, 9.43358457143229,48.54759972339579),
+            //    material: Cesium.Color.RED.withAlpha(0.5),
+            //    Rotation: Cesium.Math.toRadians(50),//---???
+            //  },
+            //});
+            //avoid2.position=Cesium.Cartesian3.fromDegrees(9.412508650053288,48.54343667939448);
+            ////avoid2.style.borderRadius = "25px";//---???
 
 
             //draw line
@@ -438,21 +453,7 @@ input[type="checkbox"]:checked + label:after {
             function zoomortho1(){
               viewer.zoomTo(ortho_demo1); // zoom to the tileset
             };
-			
-			// Make Label fonts clear
-			//this.labelInfo=this.viewer.entities.add(new Cesium.Entity());
-			//this.labelInfo.position=position;
-			//this.labelInfo.label={
-				//   show:true,
-			   //         showBackground:true,
-			  //          backgroundColor:Cesium.Color.fromCssColorString('#000'),
-			 //           scale:0.5,
-			  //          font:'normal 32px MicroSoft YaHei',
-			 //           text:`blabla~~`,
-			  //          pixelOffset :new Cesium.Cartesian2(-120, -100),
-			  //          horizontalOrigin:Cesium.HorizontalOrigin.LEFT
-			//}
-			
+
 			this.viewer.scene.fxaa = false;// 关闭fxaa  最新的cesium已经将fxaa移到PostProcessStageCollection
 
 			

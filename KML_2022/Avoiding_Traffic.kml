@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Avoiding_Traffic" id="Avoiding_Traffic">
+	<SimpleField name="id" type="float"></SimpleField>
+</Schema>
+<Folder><name>Avoiding_Traffic</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Avoiding_Traffic">
+		<SimpleData name="id">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>9.42079795467186,48.5415197292311 9.41644230651799,48.5428628395252 9.41486114657172,48.5435738834876 9.41414514961492,48.5462402093824 9.41199715874452,48.5471092037664 9.41265348928826,48.5489656417783 9.41760580157279,48.5529350307258 9.42049962260653,48.5522241182826 9.42440777266239,48.5521648751281 9.42592926619559,48.551177479008 9.42557126771719,48.5494791126092 9.42363210929253,48.5477016913821 9.42267744668346,48.5466944583081 9.42079795467186,48.5415197292311</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+</Folder>
+</Document></kml>

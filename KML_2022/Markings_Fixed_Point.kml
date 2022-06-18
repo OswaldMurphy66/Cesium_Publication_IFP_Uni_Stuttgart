@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Markings_Fixed_Point" id="Markings_Fixed_Point">
+	<SimpleField name="field_1" type="string"></SimpleField>
+	<SimpleField name="field_2" type="float"></SimpleField>
+	<SimpleField name="field_3" type="float"></SimpleField>
+	<SimpleField name="field_4" type="float"></SimpleField>
+	<SimpleField name="field_5" type="float"></SimpleField>
+	<SimpleField name="field_6" type="float"></SimpleField>
+	<SimpleField name="field_7" type="float"></SimpleField>
+</Schema>
+<Folder><name>Markings_Fixed_Point</name>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#Markings_Fixed_Point">
+		<SimpleData name="field_1">np1 </SimpleData>
+		<SimpleData name="field_2">529520.42874</SimpleData>
+		<SimpleData name="field_3">5375124.43502</SimpleData>
+		<SimpleData name="field_4">720.14819</SimpleData>
+		<SimpleData name="field_5">0.00021</SimpleData>
+		<SimpleData name="field_6">0.0004</SimpleData>
+		<SimpleData name="field_7">0.00249</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><altitudeMode>absolute</altitudeMode><coordinates>9.39984159856699,48.5285336118899,720.14819</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#Markings_Fixed_Point">
+		<SimpleData name="field_1">np2 </SimpleData>
+		<SimpleData name="field_2">529311.38002</SimpleData>
+		<SimpleData name="field_3">5375146.22178</SimpleData>
+		<SimpleData name="field_4">715.22301</SimpleData>
+		<SimpleData name="field_5">0.00031</SimpleData>
+		<SimpleData name="field_6">0.00094</SimpleData>
+		<SimpleData name="field_7">0.00263</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><altitudeMode>absolute</altitudeMode><coordinates>9.39701172609704,48.5287394076582,715.22301</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#Markings_Fixed_Point">
+		<SimpleData name="field_1">105 </SimpleData>
+		<SimpleData name="field_2">529618.11995</SimpleData>
+		<SimpleData name="field_3">5375720.7052</SimpleData>
+		<SimpleData name="field_4">720.78129</SimpleData>
+		<SimpleData name="field_5">0.00045</SimpleData>
+		<SimpleData name="field_6">0.00069</SimpleData>
+		<SimpleData name="field_7">0.00453</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><altitudeMode>absolute</altitudeMode><coordinates>9.40120712613518,48.5338931335921,720.78129</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#Markings_Fixed_Point">
+		<SimpleData name="field_1">np11 </SimpleData>
+		<SimpleData name="field_2">529385.6461</SimpleData>
+		<SimpleData name="field_3">5375133.57833</SimpleData>
+		<SimpleData name="field_4">718.09808</SimpleData>
+		<SimpleData name="field_5">0.00036</SimpleData>
+		<SimpleData name="field_6">0.00065</SimpleData>
+		<SimpleData name="field_7">0.00324</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><altitudeMode>absolute</altitudeMode><coordinates>9.39801671587278,48.5286221922033,718.09808</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#Markings_Fixed_Point">
+		<SimpleData name="field_1">np12 </SimpleData>
+		<SimpleData name="field_2">529445.36775</SimpleData>
+		<SimpleData name="field_3">5375108.72924</SimpleData>
+		<SimpleData name="field_4">718.78704</SimpleData>
+		<SimpleData name="field_5">0.00039</SimpleData>
+		<SimpleData name="field_6">0.00047</SimpleData>
+		<SimpleData name="field_7">0.00362</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><altitudeMode>absolute</altitudeMode><coordinates>9.39882384571264,48.5283958469733,718.78704</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#Markings_Fixed_Point">
+		<SimpleData name="field_1">np3 </SimpleData>
+		<SimpleData name="field_2">529617.81814</SimpleData>
+		<SimpleData name="field_3">5375310.96594</SimpleData>
+		<SimpleData name="field_4">724.95106</SimpleData>
+		<SimpleData name="field_5">0.00114</SimpleData>
+		<SimpleData name="field_6">0.00072</SimpleData>
+		<SimpleData name="field_7">0.00353</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><altitudeMode>absolute</altitudeMode><coordinates>9.40117391762546,48.5302070802252,724.95106</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#Markings_Fixed_Point">
+		<SimpleData name="field_1">np4 </SimpleData>
+		<SimpleData name="field_2">529488.03792</SimpleData>
+		<SimpleData name="field_3">5375244.89816</SimpleData>
+		<SimpleData name="field_4">720.78237</SimpleData>
+		<SimpleData name="field_5">0.00083</SimpleData>
+		<SimpleData name="field_6">0.00034</SimpleData>
+		<SimpleData name="field_7">0.00278</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><altitudeMode>absolute</altitudeMode><coordinates>9.39941141230578,48.5296188376038,720.78237</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#Markings_Fixed_Point">
+		<SimpleData name="field_1">np5 </SimpleData>
+		<SimpleData name="field_2">529392.00979</SimpleData>
+		<SimpleData name="field_3">5375256.95377</SimpleData>
+		<SimpleData name="field_4">717.16674</SimpleData>
+		<SimpleData name="field_5">0.00089</SimpleData>
+		<SimpleData name="field_6">0.00054</SimpleData>
+		<SimpleData name="field_7">0.00274</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><altitudeMode>absolute</altitudeMode><coordinates>9.39811160742883,48.5297317966431,717.16674</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#Markings_Fixed_Point">
+		<SimpleData name="field_1">np6 </SimpleData>
+		<SimpleData name="field_2">529185.08419</SimpleData>
+		<SimpleData name="field_3">5375210.13962</SimpleData>
+		<SimpleData name="field_4">709.43662</SimpleData>
+		<SimpleData name="field_5">0.00066</SimpleData>
+		<SimpleData name="field_6">0.00165</SimpleData>
+		<SimpleData name="field_7">0.00334</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><altitudeMode>absolute</altitudeMode><coordinates>9.39530561417329,48.5293203079009,709.43662</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#Markings_Fixed_Point">
+		<SimpleData name="field_1">np7 </SimpleData>
+		<SimpleData name="field_2">529176.04136</SimpleData>
+		<SimpleData name="field_3">5375121.6908</SimpleData>
+		<SimpleData name="field_4">710.58252</SimpleData>
+		<SimpleData name="field_5">0.00028</SimpleData>
+		<SimpleData name="field_6">0.00169</SimpleData>
+		<SimpleData name="field_7">0.00345</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><altitudeMode>absolute</altitudeMode><coordinates>9.3951769427823,48.5285250303077,710.58252</coordinates></Point>
+  </Placemark>
+  <Placemark>
+	<ExtendedData><SchemaData schemaUrl="#Markings_Fixed_Point">
+		<SimpleData name="field_1">np9 </SimpleData>
+		<SimpleData name="field_2">529696.22398</SimpleData>
+		<SimpleData name="field_3">5375191.92638</SimpleData>
+		<SimpleData name="field_4">725.58183</SimpleData>
+		<SimpleData name="field_5">0.00066</SimpleData>
+		<SimpleData name="field_6">0.0006</SimpleData>
+		<SimpleData name="field_7">0.00382</SimpleData>
+	</SchemaData></ExtendedData>
+      <Point><altitudeMode>absolute</altitudeMode><coordinates>9.40222741754356,48.5291324790046,725.58183</coordinates></Point>
+  </Placemark>
+</Folder>
+</Document></kml>

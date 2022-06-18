@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Landing_area_2" id="Landing_area_2">
+	<SimpleField name="id" type="float"></SimpleField>
+</Schema>
+<Folder><name>Landing_area_2</name>
+  <Placemark>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Landing_area_2">
+		<SimpleData name="id">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>9.39286661505502,48.5291831746411 9.39290390656319,48.5290399383811 9.40211490908035,48.5293264104958 9.40204778436566,48.5294844633827 9.39286661505502,48.5291831746411</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+</Folder>
+</Document></kml>

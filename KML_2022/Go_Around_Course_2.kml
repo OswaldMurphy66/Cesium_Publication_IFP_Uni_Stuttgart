@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document id="root_doc">
+<Schema name="Go_Around_Course_2" id="Go_Around_Course_2">
+	<SimpleField name="id" type="float"></SimpleField>
+</Schema>
+<Folder><name>Go_Around_Course_2</name>
+  <Placemark>
+	<name>Motorflug 3200ft(975m)</name>
+	<Style><LineStyle><color>ff0000ff</color></LineStyle><PolyStyle><fill>0</fill></PolyStyle></Style>
+	<ExtendedData><SchemaData schemaUrl="#Go_Around_Course_2">
+		<SimpleData name="id">1</SimpleData>
+	</SchemaData></ExtendedData>
+      <MultiGeometry><Polygon><outerBoundaryIs><LinearRing><coordinates>9.3970118355754,48.5296905388921 9.37817216859385,48.5313352405179 9.38074248539255,48.5414874972224 9.41997829563183,48.5380685238241 9.41788286835756,48.5277944593193 9.3970118355754,48.5296905388921</coordinates></LinearRing></outerBoundaryIs></Polygon></MultiGeometry>
+  </Placemark>
+</Folder>
+</Document></kml>

@@ -209,7 +209,7 @@ input[type="checkbox"]:checked + label:after {
             // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
             var viewer = new Cesium.Viewer('cesiumContainer',{
               terrainProvider: new Cesium.CesiumTerrainProvider({
-                url: Cesium.IonResource.fromAssetId(1),
+                  url: Cesium.IonResource.fromAssetId(1),
               }),
               // terrainProvider: new Cesium.CesiumTerrainProvider({
               //   url: Cesium.IonResource.fromAssetId(1121911),
@@ -224,8 +224,8 @@ input[type="checkbox"]:checked + label:after {
               requestVertexNormals : true // required for terrain lighting
             });
              // Enable depth testing so things behind the terrain disappear.
-            viewer.scene.globe.depthTestAgainstTerrain = true;
-			
+            viewer.scene.globe.depthTestAgainstTerrain = false;
+
 			
             //add point cloud
             var pc_demo1 = viewer.scene.primitives.add(
@@ -252,6 +252,62 @@ input[type="checkbox"]:checked + label:after {
               new Cesium.IonImageryProvider({ assetId: 1113345 })
             );
 
+            // Add kml data series
+            var avoid_urban=Cesium.IonResource.fromAssetId(1137096).then(function (resource) {
+                var options = {
+                    camera: viewer.scene.camera,
+                    canvas: viewer.scene.canvas
+                };
+                viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
+            });
+
+            var avoid_traffic = Cesium.IonResource.fromAssetId(1137095).then(function (resource) {
+                var options = {
+                    camera: viewer.scene.camera,
+                    canvas: viewer.scene.canvas
+                };
+                viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
+            });
+
+            var Go_Around_Course_1 = Cesium.IonResource.fromAssetId(1137097).then(function (resource) {
+                var options = {
+                    camera: viewer.scene.camera,
+                    canvas: viewer.scene.canvas
+                };
+                viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
+            });
+
+            var Go_Around_Course_2 = Cesium.IonResource.fromAssetId(1137098).then(function (resource) {
+                var options = {
+                    camera: viewer.scene.camera,
+                    canvas: viewer.scene.canvas
+                };
+                viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
+            });
+
+            var Landing_Area_1 = Cesium.IonResource.fromAssetId(1137099).then(function (resource) {
+                var options = {
+                    camera: viewer.scene.camera,
+                    canvas: viewer.scene.canvas
+                };
+                viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
+            });
+
+            var Landing_area_2 = Cesium.IonResource.fromAssetId(1137101).then(function (resource) {
+                var options = {
+                    camera: viewer.scene.camera,
+                    canvas: viewer.scene.canvas
+                };
+                viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
+            });
+
+            var Markings_Fixed_Point = Cesium.IonResource.fromAssetId(1137102).then(function (resource) {
+                var options = {
+                    camera: viewer.scene.camera,
+                    canvas: viewer.scene.canvas
+                };
+                viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
+            });
 			//// Adding polygon: rectangle landing areas based in positions            
    //         var greenPolygon_1 = viewer.entities.add({
    //           name: "Landing area 1",
@@ -377,7 +433,6 @@ input[type="checkbox"]:checked + label:after {
               },
             });
 
-				
 
             //function for checkbox buttom
             function Check_PC1(){
@@ -441,7 +496,20 @@ input[type="checkbox"]:checked + label:after {
 
 			this.viewer.scene.fxaa = false;// 关闭fxaa  最新的cesium已经将fxaa移到PostProcessStageCollection
 
-			
+
+            // Modifying home button position
+            viewer.homeButton.viewModel.command.beforeExecute.addEventListener(function (e) {
+                e.cancel = true;
+                viewer.camera.flyTo({
+                    destination: Cesium.Cartesian3.fromDegrees(9.398960475752261,
+                        48.529346010903474,
+                        2631.082799425431),
+                })
+            })
+
+
+
+
         </script>
     </article>
 </section>

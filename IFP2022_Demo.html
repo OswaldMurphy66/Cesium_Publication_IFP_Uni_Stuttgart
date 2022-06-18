@@ -252,21 +252,6 @@ input[type="checkbox"]:checked + label:after {
               new Cesium.IonImageryProvider({ assetId: 1113345 })
             );
 
-            // Add avoiding area urban
-            (async () => {
-                try {
-                    const resource = await Cesium.IonResource.fromAssetId(1136990);
-                    const dataSource = await Cesium.KmlDataSource.load(resource, {
-                        camera: viewer.scene.camera,
-                        canvas: viewer.scene.canvas,
-                    });
-                    await viewer.dataSources.add(dataSource);
-                    await viewer.zoomTo(dataSource);
-                } catch (error) {
-                    console.log(error);
-                }
-            })();
-			
 			//// Adding polygon: rectangle landing areas based in positions            
    //         var greenPolygon_1 = viewer.entities.add({
    //           name: "Landing area 1",

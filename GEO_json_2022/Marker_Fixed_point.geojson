@@ -1,6 +1,6 @@
 {
 "type": "FeatureCollection",
-"name": "Markings_Fixed_Points",
+"name": "Marker_Fixed_point",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::32632" } },
 "features": [
 { "type": "Feature", "properties": { "field_1": "            np1 ", "field_2": 529520.42874, "field_3": 5375124.4350199997, "field_4": 720.14819, "field_5": 0.00021, "field_6": 0.0004, "field_7": 0.00249 }, "geometry": { "type": "Point", "coordinates": [ 529520.42874, 5375124.435019999742508, 720.14819 ] } },

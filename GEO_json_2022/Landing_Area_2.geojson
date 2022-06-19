@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "Landing_Area_2",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": 1 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 9.39286661505502, 48.529183174641069, 0.0 ], [ 9.392903906563186, 48.529039938381132, 0.0 ], [ 9.402114909080353, 48.529326410495834, 0.0 ], [ 9.402047784365656, 48.529484463382651, 0.0 ], [ 9.39286661505502, 48.529183174641069, 0.0 ] ] ] } }
+]
+}

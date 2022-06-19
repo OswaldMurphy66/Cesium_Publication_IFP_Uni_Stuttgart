@@ -207,7 +207,15 @@ input[type="checkbox"]:checked + label:after {
             Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMjJlMDA0Zi01MjczLTQ3MjAtYTEyYS1mNWY3NjI0NDgxMzYiLCJpZCI6OTQzNTgsImlhdCI6MTY1MjkwMDIxN30.Irz7lx9hf8nDgJtHCD_2XXzNOY2giijRxZdNqLjD7HU';
 
             // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
-            var viewer = new Cesium.Viewer('cesiumContainer',{
+            var viewer = new Cesium.Viewer('cesiumContainer', {
+                geocoder: true,                
+                sceneModePicker: true,         
+                navigationHelpButton: true,    
+                baseLayerPicker: true,         
+                homeButton: true,            
+                fullscreenButton: true,         
+                timeline: true,                 
+                animation: true,               
               terrainProvider: new Cesium.CesiumTerrainProvider({
                   url: Cesium.IonResource.fromAssetId(1),
               }),
@@ -217,6 +225,8 @@ input[type="checkbox"]:checked + label:after {
               imageryProvider: Cesium.createWorldImagery({
                 style: Cesium.IonWorldImageryStyle.AERIAL
               })
+
+
             });
              // Load Cesium World Terrain
             viewer.terrainProvider = Cesium.createWorldTerrain({
@@ -253,13 +263,13 @@ input[type="checkbox"]:checked + label:after {
             );
 
             // Add kml data series
-            var avoid_urban=Cesium.IonResource.fromAssetId(1137096).then(function (resource) {
-                var options = {
-                    camera: viewer.scene.camera,
-                    canvas: viewer.scene.canvas
-                };
-                viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
-            });
+            //var avoid_urban=Cesium.IonResource.fromAssetId(1137096).then(function (resource) {
+            //    var options = {
+            //        camera: viewer.scene.camera,
+            //        canvas: viewer.scene.canvas
+            //    };
+            //    viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
+            //});
 
             var avoid_traffic = Cesium.IonResource.fromAssetId(1137095).then(function (resource) {
                 var options = {
@@ -309,8 +319,28 @@ input[type="checkbox"]:checked + label:after {
                 viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
             });
 
-            new Cesium.Billboard(avoid_urban)
+            //var Avoiding_Urban_Area_Geojson = Cesium.IonResource.fromAssetId(1138670).then(function (resource) {
+            //    var options = {
+            //        camera: viewer.scene.camera,
+            //        canvas: viewer.scene.canvas
+            //    };
+            //    viewer.dataSources.add(Cesium.GeoJsonDataSource.load(resource, options));
+            //});
 
+            var enetity = viewer.entities.add({
+                name: 'Icon',
+                position: Cesium.Cartesian3.fromDegrees(9.39703519151607, 48.529622848194435,1000),
+                billboard: {
+                    image: 'SaveIcon.png',
+                    horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+                    verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+                    width: 20, // default: undefined
+                    height: 20, // default: undefined
+                    scale: 1,
+                }
+            })
+
+            //viewer.zoomTo(promise);
 			//// Adding polygon: rectangle landing areas based in positions            
    //         var greenPolygon_1 = viewer.entities.add({
    //           name: "Landing area 1",

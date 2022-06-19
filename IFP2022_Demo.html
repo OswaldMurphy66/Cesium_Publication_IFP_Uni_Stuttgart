@@ -308,6 +308,9 @@ input[type="checkbox"]:checked + label:after {
                 };
                 viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
             });
+
+            new Cesium.Billboard(avoid_urban)
+
 			//// Adding polygon: rectangle landing areas based in positions            
    //         var greenPolygon_1 = viewer.entities.add({
    //           name: "Landing area 1",

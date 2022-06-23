@@ -41,14 +41,14 @@ header {
 article {
   float: left;
   padding: 20px;
-  width: 70%;
+  width: 65%;
   background-color: #ccc;
 
 }
 
 nav {
   float: right;
-  width: 30%;
+  width: 25%;
   background: #f1f1f1;
   padding: 20px;
   display: inline-block;
@@ -301,6 +301,7 @@ input[type="checkbox"]:checked + label:after {
                     canvas: viewer.scene.canvas
                 };
                 viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
+                
             });
 
             var Landing_area_2 = Cesium.IonResource.fromAssetId(1137101).then(function (resource) {

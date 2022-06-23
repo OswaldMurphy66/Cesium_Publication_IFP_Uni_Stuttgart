@@ -262,56 +262,7 @@ input[type="checkbox"]:checked + label:after {
               new Cesium.IonImageryProvider({ assetId: 1113345 })
             );
 
-            // Add kml data series
-            //var avoid_urban=Cesium.IonResource.fromAssetId(1137096).then(function (resource) {
-            //    var options = {
-            //        camera: viewer.scene.camera,
-            //        canvas: viewer.scene.canvas
-            //    };
-            //    viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
-            //});
-
-            var avoid_traffic = Cesium.IonResource.fromAssetId(1137095).then(function (resource) {
-                var options = {
-                    camera: viewer.scene.camera,
-                    canvas: viewer.scene.canvas
-                };
-                viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
-            });
-
-            var Go_Around_Course_1 = Cesium.IonResource.fromAssetId(1137097).then(function (resource) {
-                var options = {
-                    camera: viewer.scene.camera,
-                    canvas: viewer.scene.canvas
-                };
-                viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
-            });
-
-            var Go_Around_Course_2 = Cesium.IonResource.fromAssetId(1137098).then(function (resource) {
-                var options = {
-                    camera: viewer.scene.camera,
-                    canvas: viewer.scene.canvas
-                };
-                viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
-            });
-
-            var Landing_Area_1 = Cesium.IonResource.fromAssetId(1137099).then(function (resource) {
-                var options = {
-                    camera: viewer.scene.camera,
-                    canvas: viewer.scene.canvas
-                };
-                viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
-                
-            });
-
-            var Landing_area_2 = Cesium.IonResource.fromAssetId(1137101).then(function (resource) {
-                var options = {
-                    camera: viewer.scene.camera,
-                    canvas: viewer.scene.canvas
-                };
-                viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
-            });
-
+            // Load KML files
             var Markings_Fixed_Point = Cesium.IonResource.fromAssetId(1137102).then(function (resource) {
                 var options = {
                     camera: viewer.scene.camera,
@@ -319,20 +270,52 @@ input[type="checkbox"]:checked + label:after {
                 };
                 viewer.dataSources.add(Cesium.KmlDataSource.load(resource, options));
             });
+            
+            // Add Geojsons 
+            Cesium.GeoJsonDataSource.clampToGround = true;
 
-            //var Avoiding_Urban_Area_Geojson = Cesium.IonResource.fromAssetId(1138670).then(function (resource) {
-            //    var options = {
-            //        camera: viewer.scene.camera,
-            //        canvas: viewer.scene.canvas
-            //    };
-            //    viewer.dataSources.add(Cesium.GeoJsonDataSource.load(resource, options));
-            //});
+            viewer.dataSources.add(Cesium.GeoJsonDataSource.load('GEO_json_2022/Avoid_Urban_Area.geojson', {
+            stroke: Cesium.Color.HOTPINK,
+            fill: Cesium.Color.PINK.withAlpha(0.5),
+            strokeWidth: 800
+            }));
 
+            viewer.dataSources.add(Cesium.GeoJsonDataSource.load('GEO_json_2022/Avoid_Traffic.geojson', {
+            stroke: Cesium.Color.HOTPINK,
+            fill: Cesium.Color.PINK.withAlpha(0.5),
+            strokeWidth: 800
+            }));
+
+            viewer.dataSources.add(Cesium.GeoJsonDataSource.load('GEO_json_2022/Landing_Area_1.geojson', {
+            stroke: Cesium.Color.DARKGREEN,
+            fill: Cesium.Color.CHARTREUSE.withAlpha(0.5),
+            strokeWidth: 400
+            }));
+
+            viewer.dataSources.add(Cesium.GeoJsonDataSource.load('GEO_json_2022/Landing_Area_2.geojson', {
+            stroke: Cesium.Color.DARKGREEN,
+            fill: Cesium.Color.CHARTREUSE.withAlpha(0.5),
+            strokeWidth: 400
+            }));
+
+            viewer.dataSources.add(Cesium.GeoJsonDataSource.load('GEO_json_2022/Go_Around_Course_1.geojson', {
+            stroke: Cesium.Color.YELLOW,
+            fill: Cesium.Color.YELLOW.withAlpha(0.0),
+            strokeWidth: 400
+            }));
+
+            viewer.dataSources.add(Cesium.GeoJsonDataSource.load('GEO_json_2022/Go_Around_Course_2.geojson', {
+            stroke: Cesium.Color.YELLOW,
+            fill: Cesium.Color.YELLOW.withAlpha(0.0),
+            strokeWidth: 400
+            }));
+
+            // Adding Billboards
             var enetity = viewer.entities.add({
                 name: 'Icon',
                 position: Cesium.Cartesian3.fromDegrees(9.39703519151607, 48.529622848194435,1000),
                 billboard: {
-                    image: 'SaveIcon.png',
+                    image: 'img_2022/Test_Icon.png',
                     horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
                     verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
                     width: 20, // default: undefined
@@ -340,87 +323,7 @@ input[type="checkbox"]:checked + label:after {
                     scale: 1,
                 }
             })
-
-            //viewer.zoomTo(promise);
-			//// Adding polygon: rectangle landing areas based in positions            
-   //         var greenPolygon_1 = viewer.entities.add({
-   //           name: "Landing area 1",
-   //           polygon: {
-   //             hierarchy: Cesium.Cartesian3.fromDegreesArray([ 9.397084,48.529799,9.397030346347082,48.52954313865634, 9.402249044248864, 48.5290861766583, 9.402315173526649,48.52933265154202]),
-   //             material: Cesium.Color.GREEN.withAlpha(0.7),
-   //           },
-   //         });
-   //         greenPolygon_1.position=Cesium.Cartesian3.fromDegrees(9.399841076770093,48.52944079933089);
-   //         greenPolygon_1.label={
-   //             // position:
-   //             text:'landing area 1',
-   //             color : Cesium.Color.fromCssColorString('#fff'),
-   //             font:'normal 32px MicroSoft YaHei',
-   //             showBackground : true,
-   //             scale : 0.5,
-   //             horizontalOrigin : Cesium.HorizontalOrigin.LEFT_CLICK,
-   //             verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
-   //             disableDepthTestDistance : 10000.0,
-   //         };
-            
-			//var greenPolygon_2 = viewer.entities.add({
-			//  name: "Landing area 2",
-			//  polygon: {
-			//    hierarchy: Cesium.Cartesian3.fromDegreesArray([9.392909927976849,48.529241474720855,9.392933581948556,48.52896411764348, 9.401435162641437,48.529173138888915, 9.401350004491292,48.52940537604243]),
-			//    material: Cesium.Color.GREEN.withAlpha(0.7),
-			//  },
-			//});
-			//greenPolygon_2.position=Cesium.Cartesian3.fromDegrees(9.39670935301936,48.529223878988454);
-			//greenPolygon_2.label={
-			//    // position:
-			//    text:'landing area 2',
-			//    color : Cesium.Color.fromCssColorString('#fff'),
-			//    font:'normal 32px MicroSoft YaHei',
-			//    showBackground : true,
-			//    scale : 0.5,
-			//    horizontalOrigin : Cesium.HorizontalOrigin.LEFT_CLICK,
-			//    verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
-			//    disableDepthTestDistance : 10000.0
-			//};
-			
-			//<!--// Draw an ellipse for city area which planes should avoid 
-   //         var entity = viewer.entities.add({
-   //                 name: "City area",
-   //                 // indicating center of the ellipse
-   //                 position: Cesium.Cartesian3.fromDegrees( 9.406917946333378,48.519638478928805),
-   //                 ellipse: {
-   //                     show: true,
-   //                     semiMajorAxis: 700.0, // semi major axis
-   //                     semiMinorAxis: 700.0, // semi minor axis
-   //                     height: 0, // height above reference surface
-   //                                  //default: HeightReference.NONE
-   //                                  // NONE:	absolute position；
-			//						 // CLAMP_TO_GROUND:	fixed on ground；
-			//						 // RELATIVE_TO_GROUND:  relative height to the reference surface
-   //                     heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
-   //                     extrudedHeight: 0.0, 
-   //                     extrudedHeightReference: Cesium.HeightReference.CLAMP_TO_GROUND, 
-   //                     // rotation: Cesium.Math.toRadians(45), 
-			//			// let ellipse rotate from north
-   //                     stRotation: 0.0, //  let ellipse rotate from north, anti clockwise
-   //                     granularity: Cesium.Math.RADIANS_PER_DEGREE, 
-   //                     fill: true, 
-   //                     material: Cesium.Color.RED.withAlpha(0.2),
-   //                     outline: true, 
-   //                     outlineColor: Cesium.Color.DARK_RED,
-   //                     outlineWidth: 200000.0,
-   //                     numberOfVerticalLines: 16, // number of lines alongside perimeter
-   //                     shadows: Cesium.ShadowMode.DISABLED,
-   //                     // distanceDisplayCondition: new Cesium.DistanceDisplayCondition(
-   //                     //   1.0e3,
-   //                     //   2.0e3
-   //                     // ),
-   //                     classificationType: Cesium.ClassificationType.BOTH,
-   //                 },
-   //             });
-			//	viewer.zoomTo(viewer.entities);-->
-
-
+    
             // draw rectangle---???need tobe corrected
             //var avoid2 = viewer.entities.add({
             //  name: "Avoid - traffic pattern EDSG",//Garbenstetten flugplatz
@@ -528,7 +431,7 @@ input[type="checkbox"]:checked + label:after {
               viewer.zoomTo(ortho_demo1); // zoom to the tileset
             };
 
-			this.viewer.scene.fxaa = false;// 关闭fxaa  最新的cesium已经将fxaa移到PostProcessStageCollection
+			this.viewer.scene.fxaa = false;// 
 
 
             // Modifying home button position

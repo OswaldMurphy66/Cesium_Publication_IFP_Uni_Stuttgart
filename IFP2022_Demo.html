@@ -26,30 +26,37 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  background-image: url("bg.png");
+  background-color: black;
 }
 
 /* Style the header */
 header {
-  background-color: #666;
+  background-image: url("bg.png");  
+  background-color: rgb(34, 30, 30);
   height: 150px;
   padding: 5px;
   text-align: center;
   font-size: 20px;
-  color: white;
+  color: rgb(255, 255, 255);
+}
+
+h1 {
+    font-family: monospace;
 }
 
 article {
   float: left;
-  padding: 20px;
-  width: 65%;
-  background-color: #ccc;
-
+  padding: 0px;
+  width: 72%;
+  background-color: rgb(204, 204, 204);
 }
 
 nav {
   float: right;
   width: 25%;
-  background: #f1f1f1;
+  background-image: url("bg.png"); 
+  background: #24cfe68a;
   padding: 20px;
   display: inline-block;
 }
@@ -63,10 +70,13 @@ section::after {
 
 /* Style the footer */
 footer {
-  background-color: #777;
+  background-color: rgb(34, 30, 30);
+  background-image: url("bg.png"); 
   padding: 10px;
   text-align: center;
   color: white;
+  border-radius: 10%;
+  border-color: white;
 }
 
 /* Style: button */
@@ -84,6 +94,8 @@ footer {
 
 .button:hover{
   background-color: #ccc;
+  letter-spacing: 0.20em;
+  transition: 0.5s;
 }
 
 .button:active{
@@ -140,11 +152,30 @@ input[type="checkbox"] + label:after {
 }
 
 input[type="checkbox"]:checked + label:before {
-  background-color: #2b8718;
+  background-color: rgb(247, 163, 68);
 }
 
 input[type="checkbox"]:checked + label:after {
   margin: 0 0 0 22px;
+  background-color: rgb(255, 255, 255);
+}
+
+/* Scrollbar
+/* width */
+::-webkit-scrollbar {
+  width: 11px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(18, 14, 44);
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(196, 192, 192);
+  border-radius: 10px;
 }
 
 </style>

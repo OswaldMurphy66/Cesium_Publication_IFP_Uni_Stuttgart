@@ -180,6 +180,7 @@ input[type="checkbox"]:checked + label:after {
 
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript" src="LineFlowMaterialProperty.js"></script>
 </head>
 
 
@@ -626,6 +627,97 @@ input[type="checkbox"]:checked + label:after {
                 },Cesium.ScreenSpaceEventType.MOUSE_MOVE);
               }
             }
+	
+	//draw lines to show flight track
+	parabolaFlowInit(this.viewer, 3);
+          function parabolaFlowInit(_viewer, _num){
+            let _center = [9.399834579856272,48.52943931087477,765];
+            let _positions = [
+              [8.56375013822731, 50.044386848497496],
+              [9.202077639605864, 48.68900657866884],
+              [10.232940728020417, 47.987767549496205],
+              [9.514466803475603, 47.670568938082155],
+              [8.085880815840014, 48.77783117629837],
+              [2.5478380129637888, 49.00739452183982],
+              [8.555021094646033, 47.46077096457037],
+              [13.512891102041024, 52.364369726843485]
+            ];
+            _positions.forEach(item =>{
+              let _singlePositions = parabola(_center, item, 5000);
+              //create flowing line
+              for (let i = 0; i<_num; i++){
+                _viewer.entities.add({
+                  polyline:{
+                    positions: _singlePositions,
+                    material: new Cesium.LineFlowMaterialProperty({
+                      color: new Cesium.Color(1.0, 1.0, 0.0, 0.8),
+                      speed: 15 * Math.random(),
+                      percent: 0.3,
+                      gradient: 0.01
+                    })
+                  },
+                });
+              }
+              //create trace line
+              _viewer.entities.add({
+                polyline:{
+                  positions: _singlePositions,
+                  material: new Cesium.Color(1.0, 1.0, 0.0, 0.2),
+                }
+              })
+            });
+
+            //parabola constructor
+            function parabola(
+              startPosition,
+              endPosition,
+              height = 0,
+              count = 50
+            ){
+              //equation y = -(4h/L^2)*x^2+h h:vertex height L:larger one of horizontal&vertical distance
+              let result = []
+              height = Math.max(+height,100)
+              count = Math.max(+count, 50)
+              let diffLon = Math.abs(startPosition[0] - endPosition[0])
+              let diffLat = Math.abs(startPosition[1] - endPosition[1])
+              let L = Math.max(diffLon,diffLat)
+              let dlt = L/count
+              if(diffLon>diffLat){
+                //base on lon
+                let delLat = (endPosition[1]-startPosition[1]) / count
+                if (startPosition[0] - endPosition[0] > 0){
+                  dlt = -dlt
+                }
+                for(let i=0; i<count; i++){
+                  let h = 
+                      height - 
+                      (Math.pow(-0.5 * L + Math.abs(dlt) * i,2) * 4 * height) /
+                      Math.pow(L,2) + startPosition[2]
+                  let lon = startPosition[0] + dlt * i
+                  let lat = startPosition[1] + delLat * i
+                  let point = new Cesium.Cartesian3.fromDegrees(lon, lat, h);
+                  result.push(point);
+                }
+              }else{
+                //base on Lat
+                let delLon = (endPosition[0] - startPosition[0]) / count
+                if (startPosition[1] - endPosition[1] >0){
+                  dlt = -dlt
+                }
+                for(let i = 0; i<count; i++){
+                  let h =
+                      height - 
+                      (Math.pow(-0.5 * L + Math.abs(dlt) * i,2) * 4 * height) /
+                      Math.pow(L,2)+ startPosition[2]
+                  let lon = startPosition[0] + delLon * i
+                  let lat = startPosition[1] + dlt * i
+                  let point = new Cesium.Cartesian3.fromDegrees(lon, lat, h);
+                  result.push(point);
+                }
+              }
+              return result
+            }
+          }
 
 
 

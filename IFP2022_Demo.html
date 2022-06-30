@@ -181,6 +181,7 @@ input[type="checkbox"]:checked + label:after {
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="LineFlowMaterialProperty.js"></script>
+<script type="text/javascript" src="TrailLineMaterialProperty.js"></script>
 </head>
 
 
@@ -718,6 +719,47 @@ input[type="checkbox"]:checked + label:after {
               return result
             }
           }
+	
+		
+	//show motorflug and segelflug
+          //wall effect with moving around arrows
+          $.get('GEO_json_2022/Go_Around_Course_1_r.geojson', function(data) {
+            for (let i = 0; i < data.features[0].geometry.coordinates.length; i++) {
+              SegelFlugPosition = data.features[0].geometry.coordinates[i].toString().split(',');
+            }
+            viewer.entities.add({
+              name: "SegelFlug-2970ft/900m",
+              wall: {
+                positions: Cesium.Cartesian3.fromDegreesArray(SegelFlugPosition),
+                // set height
+                maximumHeights: new Array(SegelFlugPosition.length).fill(970),
+                minimumHeights: new Array(SegelFlugPosition.length).fill(900),
+                material: new Cesium.TrailLineMaterialProperty({
+                  color: Cesium.Color.BLUE,
+                  duration: 18000,
+                })
+              }
+            })
+          })
+
+          $.get('GEO_json_2022/Go_Around_Course_2_r.geojson', function(data) {
+            for (let i = 0; i < data.features[0].geometry.coordinates.length; i++) {
+              MotorFlugPosition = data.features[0].geometry.coordinates[i].toString().split(',');
+            }
+            viewer.entities.add({
+              name: "MotorFlug-3200ft/975m",
+              wall: {
+                positions: Cesium.Cartesian3.fromDegreesArray(MotorFlugPosition),
+                // set height
+                maximumHeights: new Array(MotorFlugPosition.length).fill(1045),
+                minimumHeights: new Array(MotorFlugPosition.length).fill(975),
+                material: new Cesium.TrailLineMaterialProperty({
+                  color: Cesium.Color.BLUE,
+                  duration: 18000,
+                })
+              }
+            })
+          })
 
 
 

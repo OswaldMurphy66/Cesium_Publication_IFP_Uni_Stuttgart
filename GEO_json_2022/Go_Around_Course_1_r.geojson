@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "Go_Around_Course_1",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": 1, "Name": "Segeflug 2970ft(900m)" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 9.396899961068378, 48.529701651920135], [ 9.387010254648134, 48.530561052037889], [ 9.388442248337943, 48.536383844460893], [ 9.407841287854575, 48.534694859120535], [ 9.406789667488621, 48.528812601966976], [ 9.396899961068378, 48.529701651920135] ] ] } }
+]
+}

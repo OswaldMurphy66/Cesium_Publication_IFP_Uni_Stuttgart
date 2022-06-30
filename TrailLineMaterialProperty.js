@@ -50,7 +50,7 @@ TrailLineMaterialProperty.prototype.equals = function(other) {
 
 Cesium.TrailLineMaterialProperty = TrailLineMaterialProperty;
 Cesium.Material.TrailLineType = 'TrailLine';
-Cesium.Material.TrailLineImage = "img/arrow_blue.png";
+Cesium.Material.TrailLineImage = "img_2022/arrow_blue.png";
 Cesium.Material.TrailLineSource = "czm_material czm_getMaterial(czm_materialInput materialInput)\n\
 {\n\
      czm_material material = czm_getDefaultMaterial(materialInput);\n\

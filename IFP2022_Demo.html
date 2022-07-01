@@ -217,6 +217,10 @@ input[type="checkbox"]:checked + label:after {
           <input type="checkbox" id="ortho1_button" onclick="Check_OP1()" > <label for="ortho1_button"> Airport brief</label>
           <button class="button" id="zoom_ortho1" style="position: absolute; right: 20px;" onclick="zoomortho1()" > Zoom </button>
         <br>
+	<br>
+          <input type="checkbox" id="ortho2_button" onclick="Check_OP2()" > <label for="ortho2_button"> Airport brief</label>
+          <button class="button" id="zoom_ortho2" style="position: absolute; right: 20px;" onclick="zoomortho2()" > Zoom </button>
+      	<br>
         <br>
           <b>Polygon</b>
         <br>
@@ -295,6 +299,10 @@ input[type="checkbox"]:checked + label:after {
             var ortho_demo1 = viewer.imageryLayers.addImageryProvider(
               new Cesium.IonImageryProvider({ assetId: 1113345 })
             );
+	
+	    var ortho_demo2 = viewer.imageryLayers.addImageryProvider(
+              new Cesium.IonImageryProvider({ assetId: 1174258 })
+            );}
 
             // Load KML files
             var Markings_Fixed_Point = Cesium.IonResource.fromAssetId(1137102).then(function (resource) {
@@ -479,12 +487,12 @@ input[type="checkbox"]:checked + label:after {
             // Setting area and adding dynamic wall
 
               function drawWall(viewer, positions) {
-                  // 绘制墙体
+                  // draw wall
                   this.viewer.entities.add({
-                      name: "立体墙效果",
+                      name: "3D Wall effect",
                       wall: {
                           positions: positions,
-                          // 设置高度
+                          // set height
                           maximumHeights: new Array(positions.length).fill(100),
                           minimunHeights: new Array(positions.length).fill(0),
                           material: new Cesium.DynamicWallMaterialProperty({
@@ -536,6 +544,16 @@ input[type="checkbox"]:checked + label:after {
                 ortho_demo1.show = false;// close the point cloud
               }
             }
+	
+	    function Check_OP2(){
+              //Show/hide point cloud for demo
+              if (document.getElementById('ortho2_button').checked == true) { //if the buttons is checked
+                ortho_demo2.show = true;// make the point cloud visible
+              }
+              else {
+                ortho_demo2.show = false;// close the point cloud
+              }
+            }
 
 
 
@@ -554,6 +572,10 @@ input[type="checkbox"]:checked + label:after {
 
             function zoomortho1(){
               viewer.zoomTo(ortho_demo1); // zoom to the tileset
+            };
+		
+	    function zoomortho2(){
+              viewer.zoomTo(ortho_demo2); // zoom to the tileset
             };
 
 			this.viewer.scene.fxaa = false;// 

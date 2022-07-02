@@ -45,6 +45,17 @@ h1 {
     font-family: monospace;
 }
 
+.neonText {
+    color: #fff;
+    text-shadow:
+      0 0 7px rgb(17, 2, 2),
+      0 0 15px rgb(249, 255, 255);
+  }
+  .pulsate {
+     animation: pulsate 1.5s infinite alternate;     
+}
+
+
 article {
   float: left;
   padding: 0px;
@@ -189,7 +200,7 @@ input[type="checkbox"]:checked + label:after {
 <!-- main content of the website -->
 <body>
     <header>
-      <h1> Visualization of Stadtmitte Campus <br> </h1>
+      <h1 class="neonText pulsate"> Visualization of Hülben aerodrome <br> </h1>
     </header>
 
 <section>

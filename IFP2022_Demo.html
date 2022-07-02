@@ -13,11 +13,11 @@
 <!-- Include the CesiumJS JavaScript and CSS files -->
 <script src="https://cesium.com/downloads/cesiumjs/releases/1.78/Build/Cesium/Cesium.js"></script>
 <link href="https://cesium.com/downloads/cesiumjs/releases/1.78/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!-- design of the website -->
 <!-- CSS used here -->
 <style>
-<!-- Activation of Visual tools in Cesium -->
+/* Activation of Visual tools in Cesium */
 @import url(./Cesium/Widgets/widgets.css)
 
 *{
@@ -31,34 +31,45 @@ body {
 }
 
 /* Style the header */
-header {
-  background-image: url("img_2022/bg.png");  
-  background-color: rgb(34, 30, 30);
-  height: 150px;
+header { 
+  background-color: rgba(255, 255, 255, 0);
+  height: 100px;
   padding: 5px;
   text-align: center;
   font-size: 20px;
   color: rgb(255, 255, 255);
+  animation: slideInFromTop .5s ease-in;
 }
 
 h1 {
     font-family: monospace;
 }
 
+.neonText {
+    color: #fff;
+    text-shadow:
+      0 0 7px rgb(17, 2, 2),
+      0 0 15px rgb(249, 255, 255);
+  }
+  .pulsate {
+     animation: pulsate 1.5s infinite alternate;     
+}
+
 article {
   float: left;
   padding: 0px;
-  width: 72%;
+  width: 78%;
   background-color: rgb(204, 204, 204);
 }
 
 nav {
   float: right;
-  width: 25%;
+  width: 19%;
   background-image: url("img_2022/bg.png"); 
   background: #24cfe68a;
   padding: 20px;
   display: inline-block;
+  animation: slideInFromLeft .7s ease-in;
 }
 
 /* Clear floats after the columns */
@@ -66,17 +77,6 @@ section::after {
   content: "";
   display: table;
   clear: both;
-}
-
-/* Style the footer */
-footer {
-  background-color: rgb(34, 30, 30);
-  background-image: url("img_2022/bg.png"); 
-  padding: 10px;
-  text-align: center;
-  color: white;
-  border-radius: 10%;
-  border-color: white;
 }
 
 /* Style: button */
@@ -178,6 +178,97 @@ input[type="checkbox"]:checked + label:after {
   border-radius: 10px;
 }
 
+/* Style the footer */
+footer {
+  background-color: rgba(255, 255, 255, 0); 
+  padding: 10px;
+  text-align: center;
+  color: white;
+  border-radius: 0%;
+  border-color: white;
+  animation: slideInFromBottom 1s ease-in;
+}
+
+/* Footers Background & colored buttons */
+.bg-dark,
+.btn-dark {
+  background-color: var(--dark-color);
+  color: #fff;
+}
+
+.bg-dark a,
+.btn-dark a {
+  color: #fff;
+}
+
+.footer .social a {
+  margin: 0 10px;
+}
+
+.fa-github:hover {
+  color: #6b0799;
+}
+
+.fa-facebook:hover {
+  color: #1773EA;
+}
+
+.fa-instagram:hover {
+  color: #B32E87;
+}
+
+.fa-twitter:hover {
+  color: #1C9CEA;
+}
+
+.fa-building-columns:hover {
+  color: #17dbe9;
+}
+
+/* Animations */
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.cesium-widget-credits{
+    display:none !important;
+}
 </style>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="LineFlowMaterialProperty.js"></script>
@@ -190,7 +281,7 @@ input[type="checkbox"]:checked + label:after {
 <!-- main content of the website -->
 <body>
     <header>
-      <h1> Visualization of Stadtmitte Campus <br> </h1>
+      <h1 class="neonText pulsate"> Visualization of Hülben aerodrome <br> </h1>
     </header>
 
 <section>
@@ -735,8 +826,20 @@ input[type="checkbox"]:checked + label:after {
     </article>
 </section>
 
-    <footer>
-      <p>This Website was created by WP8 in intergrated fieldwork 2022 conducted at the University of Stuttgart.</p>
-    </footer>     
+<footer class="footer bg-dark py-5">
+  <div class="container grid grid-3">
+    <div>
+      <h2></h2>
+    </div>
+    <div class="social">
+        <a href="https://www.ifp.uni-stuttgart.de/en/" target="_blank"><i class="fas fa-building-columns fa-2x"></i></a>
+        <a href="#"><i class="fab fa-github fa-2x"></i></a>
+        <a href="https://www.facebook.com/Universitaet.Stuttgart" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+        <a href="https://www.instagram.com/unistuttgart/" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+        <a href="https://twitter.com/Uni_Stuttgart" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
+    </div>
+  </div>
+  <h5>created by WP8 at the University of Stuttgart &copy; 2022</h5>
+</footer>     
 </body>
 </html>

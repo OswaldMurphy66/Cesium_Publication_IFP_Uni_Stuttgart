@@ -33,12 +33,25 @@ body {
 /* Style the header */
 header { 
   background-color: rgba(255, 255, 255, 0);
-  height: 100px;
-  padding: 5px;
+  height: 1%;
+  padding: 1%;
   text-align: center;
-  font-size: 20px;
+  font-size: 25px;
   color: rgb(255, 255, 255);
   animation: slideInFromTop .5s ease-in;
+}
+
+/* Style the footer */
+footer {
+  background-color: rgba(255, 255, 255, 0); 
+  height: 80%;
+  padding: 10%;
+  text-align: center;
+  color: white;
+  border-radius: 1%;
+  border-color: white;
+  font-size: 20px;
+  animation: slideInFromBottom 1s ease-in;
 }
 
 h1 {
@@ -59,6 +72,7 @@ article {
   float: left;
   padding: 0px;
   width: 78%;
+  height: 70%;
   background-color: rgb(204, 204, 204);
 }
 
@@ -67,7 +81,7 @@ nav {
   width: 19%;
   background-image: url("img_2022/bg.png"); 
   background: #24cfe68a;
-  padding: 20px;
+  padding: 1%;
   display: inline-block;
   animation: slideInFromLeft .7s ease-in;
 }
@@ -178,17 +192,6 @@ input[type="checkbox"]:checked + label:after {
   border-radius: 10px;
 }
 
-/* Style the footer */
-footer {
-  background-color: rgba(255, 255, 255, 0); 
-  padding: 10px;
-  text-align: center;
-  color: white;
-  border-radius: 0%;
-  border-color: white;
-  animation: slideInFromBottom 1s ease-in;
-}
-
 /* Footers Background & colored buttons */
 .bg-dark,
 .btn-dark {
@@ -276,12 +279,10 @@ footer {
 <script type="text/javascript" src="WallDiffuseMaterialProperty.js"></script>
 </head>
 
-
-
 <!-- main content of the website -->
 <body>
     <header>
-      <h1 class="neonText pulsate"> Visualization of Hülben aerodrome <br> </h1>
+      <h1 class="neonText pulsate"> Visualization of Hülben Aerodrome <br> </h1>
     </header>
 
 <section>
@@ -327,10 +328,9 @@ footer {
       <br>
     </nav>
 
-
     <!-- Cesium Viewer -->
     <article>
-        <div id="cesiumContainer" style="width: 100%; height:600px"></div>
+        <div id="cesiumContainer" style="width: 100%; height:77%"></div>
     
         <script>
             //default access token from my ion account
@@ -355,8 +355,6 @@ footer {
               imageryProvider: Cesium.createWorldImagery({
                 style: Cesium.IonWorldImageryStyle.AERIAL
               })
-
-
             });
              // Load Cesium World Terrain
             viewer.terrainProvider = Cesium.createWorldTerrain({
@@ -364,9 +362,8 @@ footer {
               requestVertexNormals : true // required for terrain lighting
             });
              // Enable depth testing so things behind the terrain disappear.
-            viewer.scene.globe.depthTestAgainstTerrain = false;
+            viewer.scene.globe.depthTestAgainstTerrain = true;
 
-			
             //add point cloud
             var pc_demo1 = viewer.scene.primitives.add(
               new Cesium.Cesium3DTileset({
@@ -407,8 +404,6 @@ footer {
             
             // Add Geojsons 
             //Cesium.GeoJsonDataSource.clampToGround = true;
-
-
             var Avoid_Urban_Area = viewer.dataSources.add(
               Cesium.GeoJsonDataSource.load(
                  "GEO_json_2022/Avoid_Urban_Area_2D.geojson",
@@ -468,42 +463,6 @@ footer {
                 }
             })
     
-
-
-            // //draw line
-            // var Segelflug = viewer.entities.add({
-            //   name: "Segelflug - 2970ft/900m",
-            //   wall :{
-            //     positions : Cesium.Cartesian3.fromDegreesArray(
-            //       [9.39703519151607,48.529622848194435, 
-            //        9.386956349001773,48.530292490420834,
-            //        9.388908997194635,48.53648757756843,
-            //        9.407899037160616,48.53512358676029,
-            //        9.406954502423504,48.528754432235466,
-            //        9.402340033389647,48.529216576652004]),
-            //     maximumHeights: [900,900,900,900,900,900],
-            //     minumumHeights: [0,0,0,0,0,0],
-            //     material: Cesium.Color.BLUE.withAlpha(0.5),
-            //   },
-            // });
-
-            // var Motorflug = viewer.entities.add({
-            //   name: "Motorflug - 3200ft/975m",
-            //   wall :{
-            //     positions : Cesium.Cartesian3.fromDegreesArray(
-            //       [9.39703519151607,48.529622848194435, 
-            //        9.37824396517381,48.53135453585247, 
-            //        9.379830468769919,48.54176894670979,
-            //        9.42008506241363,48.538955968904105,
-            //        9.418325533250623, 48.52821407020955,
-            //        9.402340033389647,48.529216576652004]),
-            //     maximumHeights: [975,975,975,975,975,975],
-            //     minumumHeights: [0,0,0,0,0,0],
-            //     material: Cesium.Color.BLUE.withAlpha(0.5),
-            //   },
-            // });
-             
-  
             //function for checkbox buttom
             function Check_PC1(){
               //Show/hide point cloud for demo
@@ -555,8 +514,6 @@ footer {
               }
             }
 
-
-
             //function for zoom buttom
             function zoompc1(){
               viewer.zoomTo(pc_demo1); // zoom to the tileset
@@ -581,7 +538,7 @@ footer {
 			this.viewer.scene.fxaa = false;// 
 
 
-            // Modifying home button position
+             // Modifying home button position
             viewer.homeButton.viewModel.command.beforeExecute.addEventListener(function (e) {
                 e.cancel = true;
                 viewer.camera.flyTo({
@@ -592,7 +549,7 @@ footer {
             })
 		
 	
-	//show (rough) height/latitude/longitude
+          	//show (rough) height/latitude/longitude
             show3DCoordinates()
             function show3DCoordinates(){
               var coordinatesDiv = document.getElementById("map_coordinates");
@@ -839,7 +796,7 @@ footer {
         <a href="https://twitter.com/Uni_Stuttgart" target="_blank"><i class="fab fa-twitter fa-2x"></i></a>
     </div>
   </div>
-  <h5>created by WP8 at the University of Stuttgart &copy; 2022</h5>
+  <h5>created by Work Package 8 Team, University of Stuttgart &copy; 2022</h5>
 </footer>     
 </body>
 </html>

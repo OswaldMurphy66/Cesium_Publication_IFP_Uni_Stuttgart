@@ -182,6 +182,7 @@ input[type="checkbox"]:checked + label:after {
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="LineFlowMaterialProperty.js"></script>
 <script type="text/javascript" src="TrailLineMaterialProperty.js"></script>
+<script type="text/javascript" src="WallDiffuseMaterialProperty.js"></script>
 </head>
 
 
@@ -252,8 +253,8 @@ input[type="checkbox"]:checked + label:after {
                 baseLayerPicker: true,         
                 homeButton: true,            
                 fullscreenButton: true,         
-                timeline: true,                 
-                animation: true,               
+                timeline: false,                 
+                animation: false,               
               terrainProvider: new Cesium.CesiumTerrainProvider({
                   url: Cesium.IonResource.fromAssetId(1),
               }),
@@ -300,9 +301,9 @@ input[type="checkbox"]:checked + label:after {
               new Cesium.IonImageryProvider({ assetId: 1113345 })
             );
 	
-	    var ortho_demo2 = viewer.imageryLayers.addImageryProvider(
+	          var ortho_demo2 = viewer.imageryLayers.addImageryProvider(
               new Cesium.IonImageryProvider({ assetId: 1174258 })
-            );}
+            );
 
             // Load KML files
             var Markings_Fixed_Point = Cesium.IonResource.fromAssetId(1137102).then(function (resource) {
@@ -314,45 +315,55 @@ input[type="checkbox"]:checked + label:after {
             });
             
             // Add Geojsons 
-            Cesium.GeoJsonDataSource.clampToGround = true;
+            //Cesium.GeoJsonDataSource.clampToGround = true;
 
-            viewer.dataSources.add(Cesium.GeoJsonDataSource.load('GEO_json_2022/Avoid_Urban_Area.geojson', {
-            stroke: Cesium.Color.HOTPINK,
-            fill: Cesium.Color.PINK.withAlpha(0.5),
-            strokeWidth: 800
-            }));
 
-            viewer.dataSources.add(Cesium.GeoJsonDataSource.load('GEO_json_2022/Avoid_Traffic.geojson', {
-            stroke: Cesium.Color.HOTPINK,
-            fill: Cesium.Color.PINK.withAlpha(0.5),
-            strokeWidth: 800
-            }));
+            var Avoid_Urban_Area = viewer.dataSources.add(
+              Cesium.GeoJsonDataSource.load(
+                 "GEO_json_2022/Avoid_Urban_Area_2D.geojson",
+                  {
+                    stroke: Cesium.Color.HOTPINK, 
+                    clampToGround: true,
+                    fill: Cesium.Color.RED.withAlpha(0.4),   
+                  }  
+                  ),
+                );
 
-            viewer.dataSources.add(Cesium.GeoJsonDataSource.load('GEO_json_2022/Landing_Area_1.geojson', {
-            stroke: Cesium.Color.DARKGREEN,
-            fill: Cesium.Color.CHARTREUSE.withAlpha(0.5),
-            strokeWidth: 400
-            }));
+                var Avoid_Urban_Traffic = viewer.dataSources.add(
+              Cesium.GeoJsonDataSource.load(
+                 "GEO_json_2022/Avoid_Traffic.geojson",
+                  {
+                    stroke: Cesium.Color.HOTPINK, 
+                    clampToGround: true,
+                    fill: Cesium.Color.RED.withAlpha(0.4),   
+                  }  
+                  ),
+                );
 
-            viewer.dataSources.add(Cesium.GeoJsonDataSource.load('GEO_json_2022/Landing_Area_2.geojson', {
-            stroke: Cesium.Color.DARKGREEN,
-            fill: Cesium.Color.CHARTREUSE.withAlpha(0.5),
-            strokeWidth: 400
-            }));
+                var Landing_Area_1 = viewer.dataSources.add(
+              Cesium.GeoJsonDataSource.load(
+                 "GEO_json_2022/Landing_Area_1.geojson",
+                  {
+                    stroke: Cesium.Color.DARKGREEN, 
+                    clampToGround: true,
+                    fill: Cesium.Color.CHARTREUSE.withAlpha(0.9),   
+                  }  
+                  ),
+                );
 
-            viewer.dataSources.add(Cesium.GeoJsonDataSource.load('GEO_json_2022/Go_Around_Course_1.geojson', {
-            stroke: Cesium.Color.YELLOW,
-            fill: Cesium.Color.YELLOW.withAlpha(0.0),
-            strokeWidth: 400
-            }));
-
-            viewer.dataSources.add(Cesium.GeoJsonDataSource.load('GEO_json_2022/Go_Around_Course_2.geojson', {
-            stroke: Cesium.Color.YELLOW,
-            fill: Cesium.Color.YELLOW.withAlpha(0.0),
-            strokeWidth: 400
-            }));
+                var Landing_Area_2 = viewer.dataSources.add(
+              Cesium.GeoJsonDataSource.load(
+                 "GEO_json_2022/Landing_Area_2.geojson",
+                  {
+                    stroke: Cesium.Color.DARKGREEN, 
+                    clampToGround: true,
+                    fill: Cesium.Color.CHARTREUSE.withAlpha(0.9),   
+                  }  
+                  ),
+                );
 
             // Adding Billboards
+
             var enetity = viewer.entities.add({
                 name: 'Icon',
                 position: Cesium.Cartesian3.fromDegrees(9.39703519151607, 48.529622848194435,1000),
@@ -368,142 +379,40 @@ input[type="checkbox"]:checked + label:after {
     
 
 
-            //draw line
-            var Segelflug = viewer.entities.add({
-              name: "Segelflug - 2970ft/900m",
-              wall :{
-                positions : Cesium.Cartesian3.fromDegreesArray(
-                  [9.39703519151607,48.529622848194435, 
-                   9.386956349001773,48.530292490420834,
-                   9.388908997194635,48.53648757756843,
-                   9.407899037160616,48.53512358676029,
-                   9.406954502423504,48.528754432235466,
-                   9.402340033389647,48.529216576652004]),
-                maximumHeights: [900,900,900,900,900,900],
-                minumumHeights: [0,0,0,0,0,0],
-                material: Cesium.Color.BLUE.withAlpha(0.5),
-              },
-            });
+            // //draw line
+            // var Segelflug = viewer.entities.add({
+            //   name: "Segelflug - 2970ft/900m",
+            //   wall :{
+            //     positions : Cesium.Cartesian3.fromDegreesArray(
+            //       [9.39703519151607,48.529622848194435, 
+            //        9.386956349001773,48.530292490420834,
+            //        9.388908997194635,48.53648757756843,
+            //        9.407899037160616,48.53512358676029,
+            //        9.406954502423504,48.528754432235466,
+            //        9.402340033389647,48.529216576652004]),
+            //     maximumHeights: [900,900,900,900,900,900],
+            //     minumumHeights: [0,0,0,0,0,0],
+            //     material: Cesium.Color.BLUE.withAlpha(0.5),
+            //   },
+            // });
 
-            var Motorflug = viewer.entities.add({
-              name: "Motorflug - 3200ft/975m",
-              wall :{
-                positions : Cesium.Cartesian3.fromDegreesArray(
-                  [9.39703519151607,48.529622848194435, 
-                   9.37824396517381,48.53135453585247, 
-                   9.379830468769919,48.54176894670979,
-                   9.42008506241363,48.538955968904105,
-                   9.418325533250623, 48.52821407020955,
-                   9.402340033389647,48.529216576652004]),
-                maximumHeights: [975,975,975,975,975,975],
-                minumumHeights: [0,0,0,0,0,0],
-                material: Cesium.Color.BLUE.withAlpha(0.5),
-              },
-            });
+            // var Motorflug = viewer.entities.add({
+            //   name: "Motorflug - 3200ft/975m",
+            //   wall :{
+            //     positions : Cesium.Cartesian3.fromDegreesArray(
+            //       [9.39703519151607,48.529622848194435, 
+            //        9.37824396517381,48.53135453585247, 
+            //        9.379830468769919,48.54176894670979,
+            //        9.42008506241363,48.538955968904105,
+            //        9.418325533250623, 48.52821407020955,
+            //        9.402340033389647,48.529216576652004]),
+            //     maximumHeights: [975,975,975,975,975,975],
+            //     minumumHeights: [0,0,0,0,0,0],
+            //     material: Cesium.Color.BLUE.withAlpha(0.5),
+            //   },
+            // });
              
   
-
-            //Setting material for the dynamic wall
-            function DynamicWallMaterialProperty(options) {
-                this._definitionChanged = new Cesium.Event();
-                this._color = undefined;
-                this._colorSubscription = undefined;
-                this.color = options.color;
-                this.duration = options.duration;
-                this.trailImage = options.trailImage;
-                this._time = (new Date()).getTime();
-            }
-            Object.defineProperties(DynamicWallMaterialProperty.prototype, {
-                isConstant: {
-                    get: function() {
-                        return false;
-                    }
-                },
-                definitionChanged: {
-                    get: function() {
-                        return this._definitionChanged;
-                    }
-                },
-                color: Cesium.createPropertyDescriptor('color')
-            });
-            DynamicWallMaterialProperty.prototype.getType = function(time) {
-                return 'DynamicWall';
-            };
-            DynamicWallMaterialProperty.prototype.getValue = function(time, result) {
-                if (!Cesium.defined(result)) {
-                    result = {};
-                }
-                result.color = Cesium.Property.getValueOrClonedDefault(this._color, time, Cesium.Color.WHITE, result.color);
-                if (this.trailImage) {
-                    result.image = this.trailImage;
-                } else {
-                    result.image = Cesium.Material.DynamicWallImage
-                }
-
-                if (this.duration) {
-                    result.time = (((new Date()).getTime() - this._time) % this.duration) / this.duration;
-                }
-                viewer.scene.requestRender();
-                return result;
-            };
-            DynamicWallMaterialProperty.prototype.equals = function(other) {
-                return this === other ||
-                    (other instanceof DynamicWallMaterialProperty &&
-                        Cesium.Property.equals(this._color, other._color))
-            };
-            Cesium.DynamicWallMaterialProperty = DynamicWallMaterialProperty;
-            Cesium.Material.DynamicWallType = 'DynamicWall';
-            Cesium.Material.DynamicWallImage = "img/colors.png";
-            Cesium.Material.DynamicWallSource = "czm_material czm_getMaterial(czm_materialInput materialInput)\n\
-                                                        {\n\
-                                                        czm_material material = czm_getDefaultMaterial(materialInput);\n\
-                                                        vec2 st = materialInput.st;\n\
-                                                        vec4 colorImage = texture2D(image, vec2(fract(st.t - time), st.t));\n\
-                                                        vec4 fragColor;\n\
-                                                        fragColor.rgb = color.rgb / 1.0;\n\
-                                                        fragColor = czm_gammaCorrect(fragColor);\n\
-                                                        material.alpha = colorImage.a * color.a;\n\
-                                                        material.diffuse = color.rgb;\n\
-                                                        material.emission = fragColor.rgb;\n\
-                                                        return material;\n\
-                                                        }";
-            Cesium.Material._materialCache.addMaterial(Cesium.Material.DynamicWallType, {
-                fabric: {
-                    type: Cesium.Material.DynamicWallType,
-                    uniforms: {
-                        color: new Cesium.Color(1.0, 1.0, 1.0, 1),
-                        image: Cesium.Material.DynamicWallImage,
-                        time: 0
-                    },
-                    source: Cesium.Material.DynamicWallSource
-                },
-                translucent: function(material) {
-                    return true;
-                }
-            });
-
-
-
-            // Setting area and adding dynamic wall
-
-              function drawWall(viewer, positions) {
-                  // draw wall
-                  this.viewer.entities.add({
-                      name: "3D Wall effect",
-                      wall: {
-                          positions: positions,
-                          // set height
-                          maximumHeights: new Array(positions.length).fill(100),
-                          minimunHeights: new Array(positions.length).fill(0),
-                          material: new Cesium.DynamicWallMaterialProperty({
-                              color: Cesium.Color.fromBytes(55, 96, 56).withAlpha(0.7),
-                              duration: 3000
-                          }),
-                      }
-                  })
-              }
-
-            
             //function for checkbox buttom
             function Check_PC1(){
               //Show/hide point cloud for demo
@@ -754,7 +663,7 @@ input[type="checkbox"]:checked + label:after {
               wall: {
                 positions: Cesium.Cartesian3.fromDegreesArray(SegelFlugPosition),
                 // set height
-                maximumHeights: new Array(SegelFlugPosition.length).fill(970),
+                maximumHeights: new Array(SegelFlugPosition.length).fill(1000),
                 minimumHeights: new Array(SegelFlugPosition.length).fill(900),
                 material: new Cesium.TrailLineMaterialProperty({
                   color: Cesium.Color.BLUE,
@@ -773,8 +682,8 @@ input[type="checkbox"]:checked + label:after {
               wall: {
                 positions: Cesium.Cartesian3.fromDegreesArray(MotorFlugPosition),
                 // set height
-                maximumHeights: new Array(MotorFlugPosition.length).fill(1045),
-                minimumHeights: new Array(MotorFlugPosition.length).fill(975),
+                maximumHeights: new Array(MotorFlugPosition.length).fill(1050),
+                minimumHeights: new Array(MotorFlugPosition.length).fill(950),
                 material: new Cesium.TrailLineMaterialProperty({
                   color: Cesium.Color.BLUE,
                   duration: 18000,
@@ -783,8 +692,44 @@ input[type="checkbox"]:checked + label:after {
             })
           })
 
+          //show Avoid Urban Area and Avoid Traffic Area
+          $.get('GEO_json_2022/Avoid_Urban_Area_2D.geojson', function(data) {
+            for (let i = 0; i < data.features[0].geometry.coordinates.length; i++) {
+              Avoid_Urban_Area = data.features[0].geometry.coordinates[i].toString().split(',');
+            }
+            viewer.entities.add({
+              name: "Avoid_Urban_Area",
+              wall: {
+                positions: Cesium.Cartesian3.fromDegreesArray(Avoid_Urban_Area),
+                // set height
+                maximumHeights: new Array(Avoid_Urban_Area.length).fill(600),
+                minimumHeights: new Array(Avoid_Urban_Area.length).fill(1200),
+                material: new Cesium.WallDiffuseMaterialProperty({
+                  color: Cesium.Color.RED ,
+                  duration: 18000,
+                })
+              }
+            })
+          })
 
-
+          $.get('GEO_json_2022/Avoid_Traffic.geojson', function(data) {
+            for (let i = 0; i < data.features[0].geometry.coordinates.length; i++) {
+              Avoid_Urban_Traffic = data.features[0].geometry.coordinates[i].toString().split(',');
+            }
+            viewer.entities.add({
+              name: "Avoid_Urban_Area",
+              wall: {
+                positions: Cesium.Cartesian3.fromDegreesArray(Avoid_Urban_Traffic),
+                // set height
+                maximumHeights: new Array(Avoid_Urban_Traffic.length).fill(600),
+                minimumHeights: new Array(Avoid_Urban_Traffic.length).fill(1200),
+                material: new Cesium.WallDiffuseMaterialProperty({
+                  color: Cesium.Color.RED ,
+                  duration: 18000,
+                })
+              }
+            })
+          })
 
         </script>
     </article>

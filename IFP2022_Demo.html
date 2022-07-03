@@ -24,40 +24,29 @@
   box-sizing: border-box;
 }
 
+/* body */
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-image: url("img_2022/bg.png");
   background-color: black;
 }
 
-/* Style the header */
+/* header */
 header { 
   background-color: rgba(255, 255, 255, 0);
   height: 1%;
   padding: 1%;
   text-align: center;
-  font-size: 25px;
+  font-size: 22px;
   color: rgb(255, 255, 255);
   animation: slideInFromTop .5s ease-in;
-}
-
-/* Style the footer */
-footer {
-  background-color: rgba(255, 255, 255, 0); 
-  height: 80%;
-  padding: 10%;
-  text-align: center;
-  color: white;
-  border-radius: 1%;
-  border-color: white;
-  font-size: 20px;
-  animation: slideInFromBottom 1s ease-in;
 }
 
 h1 {
     font-family: monospace;
 }
 
+/* neon and shadow text */
 .neonText {
     color: #fff;
     text-shadow:
@@ -68,14 +57,16 @@ h1 {
      animation: pulsate 1.5s infinite alternate;     
 }
 
+/* viewer */
 article {
   float: left;
-  padding: 0px;
+  padding: 6px;
   width: 78%;
   height: 70%;
-  background-color: rgb(204, 204, 204);
+  background-color: rgb(99, 91, 91);
 }
 
+/* nav bar */
 nav {
   float: right;
   width: 19%;
@@ -93,7 +84,7 @@ section::after {
   clear: both;
 }
 
-/* Style: button */
+/* button */
 .button{
   background-color: white;
   border-radius: 5px;
@@ -246,6 +237,19 @@ input[type="checkbox"]:checked + label:after {
   border-radius: 10px;
 }
 
+/* Style the footer */
+footer {
+  background-color: rgba(255, 255, 255, 0); 
+  height: 80%;
+  padding: 10%;
+  text-align: center;
+  color: white;
+  border-radius: 1%;
+  border-color: white;
+  font-size: 20px;
+  animation: slideInFromBottom 1s ease-in;
+}
+
 /* Footers Background & colored buttons */
 .bg-dark,
 .btn-dark {
@@ -283,6 +287,7 @@ input[type="checkbox"]:checked + label:after {
 }
 
 /* Animations */
+/* SlideIn animation */
 @keyframes slideInFromLeft {
   0% {
     transform: translateX(-100%);
@@ -322,7 +327,6 @@ input[type="checkbox"]:checked + label:after {
     transform: translateX(0);
   }
 }
-
 /* glowing animation */
 @keyframes glowing {
     0% { background-position: 0 0; }

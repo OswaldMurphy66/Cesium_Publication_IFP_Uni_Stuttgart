@@ -32,7 +32,7 @@ body {
 }
 
 /* header */
-header { 
+header {
   background-color: rgba(255, 255, 255, 0);
   height: 1%;
   padding: 1%;
@@ -54,7 +54,7 @@ h1 {
       0 0 15px rgb(249, 255, 255);
   }
   .pulsate {
-     animation: pulsate 1.5s infinite alternate;     
+     animation: pulsate 1.5s infinite alternate;
 }
 
 /* viewer */
@@ -70,7 +70,7 @@ article {
 nav {
   float: right;
   width: 17%;
-  background-image: url("img_2022/bg.png"); 
+  background-image: url("img_2022/bg.png");
   background: #24cfe68a;
   padding: 1%;
   display: inline-block;
@@ -239,7 +239,7 @@ input[type="checkbox"]:checked + label:after {
 
 /* Style the footer */
 footer {
-  background-color: rgba(255, 255, 255, 0); 
+  background-color: rgba(255, 255, 255, 0);
   height: 80%;
   padding: 0%;
   text-align: center;
@@ -338,7 +338,7 @@ footer {
     display:none !important;
 }
 </style>
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="https://code.jquery.com/jquery-latest.js"></script>
 <script type="text/javascript" src="LineFlowMaterialProperty.js"></script>
 <script type="text/javascript" src="TrailLineMaterialProperty.js"></script>
 <script type="text/javascript" src="WallDiffuseMaterialProperty.js"></script>
@@ -385,7 +385,7 @@ footer {
         <br>
           <input type="checkbox" id="Runway_button" onclick="Check_RW()" > <label for="Runway_button"> Anflugblatt </label>
           <button class="glow-on-hover" type="button" id="zoom_Runway" style="position: absolute; right: 20px;" onclick="zoomRunway()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
-        <br>      
+        <br>
         <br>
         <br>
         <b>NOTE: </b>Loading the trajectories takes a few moments.
@@ -396,21 +396,21 @@ footer {
     <!-- Cesium Viewer -->
     <article>
         <div id="cesiumContainer" style="width: 100%; height:77%"></div>
-    
+
         <script>
             //default access token from my ion account
             Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMjJlMDA0Zi01MjczLTQ3MjAtYTEyYS1mNWY3NjI0NDgxMzYiLCJpZCI6OTQzNTgsImlhdCI6MTY1MjkwMDIxN30.Irz7lx9hf8nDgJtHCD_2XXzNOY2giijRxZdNqLjD7HU';
 
             // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
             var viewer = new Cesium.Viewer('cesiumContainer', {
-                geocoder: true,                
-                sceneModePicker: true,         
-                navigationHelpButton: true,    
-                baseLayerPicker: true,         
-                homeButton: true,            
-                fullscreenButton: true,         
-                timeline: false,                 
-                animation: false,               
+                geocoder: true,
+                sceneModePicker: true,
+                navigationHelpButton: true,
+                baseLayerPicker: true,
+                homeButton: true,
+                fullscreenButton: true,
+                timeline: false,
+                animation: false,
               terrainProvider: new Cesium.CesiumTerrainProvider({
                   url: Cesium.IonResource.fromAssetId(1),
               }),
@@ -453,7 +453,7 @@ footer {
             var ortho_demo1 = viewer.imageryLayers.addImageryProvider(
               new Cesium.IonImageryProvider({ assetId: 1113345 })
             );
-	
+
 	          var ortho_demo2 = viewer.imageryLayers.addImageryProvider(
               new Cesium.IonImageryProvider({ assetId: 1174258 })
             );
@@ -461,25 +461,25 @@ footer {
            // Load KML files
             var Fixed_Points = viewer.dataSources.add(
               Cesium.KmlDataSource.load(
-                 "KML_2022/Markings_Fixed_Point_2D.kml",
+                 "/KML_2022/Markings_Fixed_Point_2D.kml",
                   {
-                    stroke: Cesium.Color.DARKGREEN, 
+                    stroke: Cesium.Color.DARKGREEN,
                     clampToGround: true,
-                    fill: Cesium.Color.CHARTREUSE.withAlpha(0.9),   
-                  }  
+                    fill: Cesium.Color.CHARTREUSE.withAlpha(0.9),
+                  }
                   ),
                 );
- 
-            // Add Geojsons 
+
+            // Add Geojsons
             //Cesium.GeoJsonDataSource.clampToGround = true;
             var Avoid_Urban_Area = viewer.dataSources.add(
               Cesium.GeoJsonDataSource.load(
                  "GEO_json_2022/Avoid_Urban_Area_2D.geojson",
                   {
-                    stroke: Cesium.Color.HOTPINK, 
+                    stroke: Cesium.Color.HOTPINK,
                     clampToGround: true,
-                    fill: Cesium.Color.RED.withAlpha(0.4),   
-                  }  
+                    fill: Cesium.Color.RED.withAlpha(0.4),
+                  }
                   ),
                 );
 
@@ -487,10 +487,10 @@ footer {
               Cesium.GeoJsonDataSource.load(
                  "GEO_json_2022/Avoid_Traffic.geojson",
                   {
-                    stroke: Cesium.Color.HOTPINK, 
+                    stroke: Cesium.Color.HOTPINK,
                     clampToGround: true,
-                    fill: Cesium.Color.RED.withAlpha(0.4),   
-                  }  
+                    fill: Cesium.Color.RED.withAlpha(0.4),
+                  }
                   ),
                 );
 
@@ -498,10 +498,10 @@ footer {
               Cesium.GeoJsonDataSource.load(
                  "GEO_json_2022/Landing_Area_1.geojson",
                   {
-                    stroke: Cesium.Color.DARKGREEN, 
+                    stroke: Cesium.Color.DARKGREEN,
                     clampToGround: true,
-                    fill: Cesium.Color.CHARTREUSE.withAlpha(0.9),   
-                  }  
+                    fill: Cesium.Color.CHARTREUSE.withAlpha(0.9),
+                  }
                   ),
                 );
 
@@ -509,28 +509,29 @@ footer {
               Cesium.GeoJsonDataSource.load(
                  "GEO_json_2022/Landing_Area_2.geojson",
                   {
-                    stroke: Cesium.Color.DARKGREEN, 
+                    stroke: Cesium.Color.DARKGREEN,
                     clampToGround: true,
-                    fill: Cesium.Color.CHARTREUSE.withAlpha(0.9),   
-                  }  
+                    fill: Cesium.Color.CHARTREUSE.withAlpha(0.9),
+                  }
                   ),
                 );
-
+                // zoom to Landing_Area_2 on startup
+                viewer.zoomTo(Landing_Area_2);
             // Adding Billboards
 
-            var enetity = viewer.entities.add({
-                name: 'Icon',
-                position: Cesium.Cartesian3.fromDegrees(9.39703519151607, 48.529622848194435,1000),
-                billboard: {
-                    image: 'img_2022/Test_Icon.png',
-                    horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
-                    verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
-                    width: 20, // default: undefined
-                    height: 20, // default: undefined
-                    scale: 1,
-                }
-            })
-    
+            // var enetity = viewer.entities.add({
+            //     name: 'Icon',
+            //     position: Cesium.Cartesian3.fromDegrees(9.39703519151607, 48.529622848194435,1000),
+            //     billboard: {
+            //         image: 'img_2022/Test_Icon.png',
+            //         horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+            //         verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+            //         width: 20, // default: undefined
+            //         height: 20, // default: undefined
+            //         scale: 1,
+            //     }
+            // })
+
             //function for checkbox buttom
             function Check_PC1(){
               //Show/hide point cloud for demo
@@ -571,7 +572,7 @@ footer {
                 ortho_demo1.show = false;// close the point cloud
               }
             }
-	
+
 	    function Check_OP2(){
               //Show/hide point cloud for demo
               if (document.getElementById('ortho2_button').checked == true) { //if the buttons is checked
@@ -581,6 +582,16 @@ footer {
                 ortho_demo2.show = false;// close the point cloud
               }
             }
+
+          function  Check_RW(){
+                    //Show/hide point cloud for demo
+                    if (document.getElementById('Runway_button').checked == true) { //if the buttons is checked
+                      viewer.entities.show=true;// make the point cloud visible
+                    }
+                    else {
+                      viewer.entities.show=false;// close the point cloud
+                    }
+                  }
 
             //function for zoom buttom
             function zoompc1(){
@@ -598,12 +609,12 @@ footer {
             function zoomortho1(){
               viewer.zoomTo(ortho_demo1); // zoom to the tileset
             };
-		
+
 	    function zoomortho2(){
               viewer.zoomTo(ortho_demo2); // zoom to the tileset
             };
 
-			this.viewer.scene.fxaa = false;// 
+			this.viewer.scene.fxaa = false;//
 
 
              // Modifying home button position
@@ -615,8 +626,8 @@ footer {
                         6631.082799425431),
                 })
             })
-		
-	
+
+
           	//show (rough) height/latitude/longitude
             show3DCoordinates()
             function show3DCoordinates(){
@@ -675,11 +686,11 @@ footer {
                 },Cesium.ScreenSpaceEventType.MOUSE_MOVE);
               }
             }
-	
+
 	//draw lines to show flight track
 	parabolaFlowInit(this.viewer, 3);
           function parabolaFlowInit(_viewer, _num){
-            let _center = [9.399834579856272,48.52943931087477,765];
+            let _center = [9.370182 ,48.528242,1000];
             let _positions = [
               [8.56375013822731, 50.044386848497496],
               [9.202077639605864, 48.68900657866884],
@@ -691,17 +702,17 @@ footer {
               [13.512891102041024, 52.364369726843485]
             ];
             _positions.forEach(item =>{
-              let _singlePositions = parabola(_center, item, 5000);
+              let _singlePositions = parabola(_center, item, 3000);
               //create flowing line
               for (let i = 0; i<_num; i++){
                 _viewer.entities.add({
                   polyline:{
                     positions: _singlePositions,
                     material: new Cesium.LineFlowMaterialProperty({
-                      color: new Cesium.Color(1.0, 1.0, 0.0, 0.8),
-                      speed: 15 * Math.random(),
-                      percent: 0.3,
-                      gradient: 0.01
+                      color: new Cesium.Color(1.0, 0.3, 0.0, 1),
+                      speed: 4 * Math.random() ,
+                      percent: 0.9,
+                      gradient: 0.0
                     })
                   },
                 });
@@ -710,7 +721,7 @@ footer {
               _viewer.entities.add({
                 polyline:{
                   positions: _singlePositions,
-                  material: new Cesium.Color(1.0, 1.0, 0.0, 0.2),
+                  material: new Cesium.Color(1.0, 1.0, 0.0, 0.1),
                 }
               })
             });
@@ -724,6 +735,13 @@ footer {
             ){
               //equation y = -(4h/L^2)*x^2+h h:vertex height L:larger one of horizontal&vertical distance
               let result = []
+
+              // add first part of the trajectorie (take off)
+              result.push(new Cesium.Cartesian3.fromDegrees(9.401947,48.529396,770));
+              result.push(new Cesium.Cartesian3.fromDegrees(9.394952,48.529144,755));
+              result.push(new Cesium.Cartesian3.fromDegrees(9.392929,48.529104,765));
+              // crerate parabola
+
               height = Math.max(+height,100)
               count = Math.max(+count, 50)
               let diffLon = Math.abs(startPosition[0] - endPosition[0])
@@ -737,8 +755,8 @@ footer {
                   dlt = -dlt
                 }
                 for(let i=0; i<count; i++){
-                  let h = 
-                      height - 
+                  let h =
+                      height -
                       (Math.pow(-0.5 * L + Math.abs(dlt) * i,2) * 4 * height) /
                       Math.pow(L,2) + startPosition[2]
                   let lon = startPosition[0] + dlt * i
@@ -754,20 +772,23 @@ footer {
                 }
                 for(let i = 0; i<count; i++){
                   let h =
-                      height - 
+                      height -
                       (Math.pow(-0.5 * L + Math.abs(dlt) * i,2) * 4 * height) /
                       Math.pow(L,2)+ startPosition[2]
                   let lon = startPosition[0] + delLon * i
                   let lat = startPosition[1] + dlt * i
                   let point = new Cesium.Cartesian3.fromDegrees(lon, lat, h);
-                  result.push(point);
+
                 }
               }
+              // add first part of the trajectorie
+
+
               return result
             }
           }
-	
-		
+
+
 	//show motorflug and segelflug
           //wall effect with moving around arrows
           $.get('GEO_json_2022/Go_Around_Course_1_r.geojson', function(data) {
@@ -793,7 +814,7 @@ footer {
             for (let i = 0; i < data.features[0].geometry.coordinates.length; i++) {
               MotorFlugPosition = data.features[0].geometry.coordinates[i].toString().split(',');
             }
-            viewer.entities.add({
+           viewer.entities.add({
               name: "MotorFlug-3200ft/975m",
               wall: {
                 positions: Cesium.Cartesian3.fromDegreesArray(MotorFlugPosition),
@@ -865,6 +886,6 @@ footer {
     </div>
   </div>
   <h5>created by Work Package 8 Team, University of Stuttgart &copy; 2022</h5>
-</footer>     
+</footer>
 </body>
 </html>

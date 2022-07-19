@@ -61,7 +61,7 @@ h1 {
 article {
   float: left;
   padding: 0px;
-  width: 81%;
+  width: 83%;
   height: 70%;
   background-color: rgb(99, 91, 91);
 }
@@ -74,7 +74,7 @@ nav {
   background: #24cfe68a;
   padding: 1%;
   display: inline-block;
-  animation: slideInFromLeft .7s ease-in;
+  animation: slideInFromRight .5s ease-in;
 }
 
 /* Clear floats after the columns */
@@ -171,21 +171,78 @@ section::after {
     border-radius: 10px;
 }
 
+.glow-on-hover1 {
+    width: 180px;
+    height: 20px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: absolute;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover1:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover1:active {
+    color: #000
+}
+
+.glow-on-hover1:active:after {
+    background: transparent;
+}
+
+.glow-on-hover1:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover1:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
 /* Style: checkbox */
 input[type="checkbox"] {
   position: absolute;
   left: -20px;
+  width: 0px;
+  height: 0px;
 }
 
 input[type="checkbox"] + label {
-  position: relative;
-  display: inline-flex;
+  position: absolute;
   cursor: pointer;
   font-family: sans-serif;
   font-size: 16px;
   line-height: 1.3;
+  display: block;
+  text-align: center;
 }
-
+/*
 input[type="checkbox"] + label:before {
   width: 35px;
   height: 13px;
@@ -356,15 +413,15 @@ footer {
         <b>3D Point Clouds</b>
         <br>
         <br>
-          <input type="checkbox" id="pc1_button" onclick="Check_PC1()" checked="true"> <label for="pc1_button"> Demo for Uni Stuttgart </label>
+          <input type="checkbox" id="pc1_button" onclick="Check_PC1()" checked="true"> <label class="glow-on-hover1" for="pc1_button"> Demo for Uni Stuttgart </label>
           <button class="glow-on-hover" type="button" id="zoom_pc1" style="position: absolute; right: 20px;" onclick="zoompc1()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
         <br>
-          <input type="checkbox" id="pc2_button" onclick="Check_PC2()" > <label for="pc2_button"> Demo indoor </label>
+          <input type="checkbox" id="pc2_button" onclick="Check_PC2()" > <label class="glow-on-hover1" for="pc2_button"> Demo indoor </label>
           <button class="glow-on-hover" type="button" id="zoom_pc2" style="position: absolute; right: 20px;" onclick="zoompc2()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
         <br>
-          <input type="checkbox" id="pc3_button" onclick="Check_PC3()"> <label for="pc3_button"> Demo playgronud </label>
+          <input type="checkbox" id="pc3_button" onclick="Check_PC3()"> <label class="glow-on-hover1" for="pc3_button"> Demo playgronud </label>
           <button class="glow-on-hover" type="button" id="zoom_pc3" style="position: absolute; right: 20px;" onclick="zoompc3()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
         <br>
@@ -372,18 +429,18 @@ footer {
           <b>Orthophotos</b>
         <br>
         <br>
-          <input type="checkbox" id="ortho1_button" onclick="Check_OP1()" > <label for="ortho1_button"> Airport brief</label>
+          <input type="checkbox" id="ortho1_button" onclick="Check_OP1()" > <label class="glow-on-hover1"for="ortho1_button"> Airport brief</label>
           <button class="glow-on-hover" type="button" id="zoom_ortho1" style="position: absolute; right: 20px;" onclick="zoomortho1()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
 	<br>
-          <input type="checkbox" id="ortho2_button" onclick="Check_OP2()" > <label for="ortho2_button"> Airport brief</label>
+          <input type="checkbox" id="ortho2_button" onclick="Check_OP2()" > <label class="glow-on-hover1" for="ortho2_button"> Airport brief</label>
           <button class="glow-on-hover" type="button" id="zoom_ortho2" style="position: absolute; right: 20px;" onclick="zoomortho2()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
       	<br>
         <br>
           <b>Polygon</b>
         <br>
         <br>
-          <input type="checkbox" id="Runway_button" onclick="Check_RW()" > <label for="Runway_button"> Anflugblatt </label>
+          <input type="checkbox" id="Runway_button" onclick="Check_RW()" > <label class="glow-on-hover1"for="Runway_button"> Anflugblatt </label>
           <button class="glow-on-hover" type="button" id="zoom_Runway" style="position: absolute; right: 20px;" onclick="zoomRunway()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
         <br>

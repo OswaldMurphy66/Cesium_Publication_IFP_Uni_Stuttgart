@@ -413,15 +413,15 @@ footer {
         <b>3D Point Clouds</b>
         <br>
         <br>
-          <input type="checkbox" id="pc1_button" onclick="Check_PC1()" checked="true"> <label class="glow-on-hover1" for="pc1_button"> Demo for Uni Stuttgart </label>
+          <input type="checkbox" id="pc1_button" onclick="Check_PC1()" checked="true"> <label class="glow-on-hover1" for="pc1_button"> Forest near Airport </label>
           <button class="glow-on-hover" type="button" id="zoom_pc1" style="position: absolute; right: 20px;" onclick="zoompc1()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
         <br>
-          <input type="checkbox" id="pc2_button" onclick="Check_PC2()" > <label class="glow-on-hover1" for="pc2_button"> Demo indoor </label>
+          <input type="checkbox" id="pc2_button" onclick="Check_PC2()" > <label class="glow-on-hover1" for="pc2_button"> Hanger outside </label>
           <button class="glow-on-hover" type="button" id="zoom_pc2" style="position: absolute; right: 20px;" onclick="zoompc2()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
         <br>
-          <input type="checkbox" id="pc3_button" onclick="Check_PC3()"> <label class="glow-on-hover1" for="pc3_button"> Demo playgronud </label>
+          <input type="checkbox" id="pc3_button" onclick="Check_PC3()"> <label class="glow-on-hover1" for="pc3_button"> Hanger inside </label>
           <button class="glow-on-hover" type="button" id="zoom_pc3" style="position: absolute; right: 20px;" onclick="zoompc3()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
         <br>
@@ -489,19 +489,19 @@ footer {
             //add point cloud
             var pc_demo1 = viewer.scene.primitives.add(
               new Cesium.Cesium3DTileset({
-                url: Cesium.IonResource.fromAssetId(1056684),
+                url: Cesium.IonResource.fromAssetId(1242496),
               })
             );
 
             var pc_demo2 = viewer.scene.primitives.add(
               new Cesium.Cesium3DTileset({
-                url: Cesium.IonResource.fromAssetId(1113299),
+                url: Cesium.IonResource.fromAssetId(1242497),
               })
             );
 
             var pc_demo3 = viewer.scene.primitives.add(
               new Cesium.Cesium3DTileset({
-                url: Cesium.IonResource.fromAssetId(1113301),
+                url: Cesium.IonResource.fromAssetId(1242498),
               })
             );
 

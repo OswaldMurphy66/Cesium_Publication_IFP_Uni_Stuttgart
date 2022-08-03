@@ -61,7 +61,7 @@ h1 {
 article {
   float: left;
   padding: 7px;
-  width: 83.8%;
+  width: 81.5%;
   height: 70%;
   background-color: #24cfe68a;
 }
@@ -69,7 +69,7 @@ article {
 /* nav bar */
 nav {
   float: right;
-  width: 13%;
+  width: 15%;
   background-image: url("img_2022/bg.png");
   background: #24cfe68a;
   padding: 1%;
@@ -171,7 +171,7 @@ section::after {
     border-radius: 10px;
 }
 
-.glow-on-hover1 {
+.glowing-label {
     width: 160px;
     height: 25px;
     border: none;
@@ -179,13 +179,14 @@ section::after {
     color: #fff;
     background: #111;
     cursor: pointer;
-    position: absolute;
+    position: left;
     z-index: 0;
     border-radius: 10px;
     text-align: center;
+    
 }
 
-.glow-on-hover1:before {
+.glowing-label:before {
     content: '';
     background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
     position: absolute;
@@ -202,19 +203,19 @@ section::after {
     border-radius: 10px;
 }
 
-.glow-on-hover1:active {
+.glowing-label:active {
     color: #000
 }
 
-.glow-on-hover1:active:after {
+.glowing-label:active:after {
     background: transparent;
 }
 
-.glow-on-hover1:hover:before {
+.glowing-label:hover:before {
     opacity: 1;
 }
 
-.glow-on-hover1:after {
+.glowing-label:after {
     z-index: -1;
     content: '';
     position: absolute;
@@ -229,9 +230,9 @@ section::after {
 /* Style: checkbox */
 input[type="checkbox"] {
   position: absolute;
-  left: -20px;
-  width: 0px;
-  height: 0px;
+  right: 60px;
+  width: 15px;
+  height: 15px;
 }
 
 input[type="checkbox"] + label {
@@ -414,28 +415,28 @@ footer {
         <b>3D Point Clouds</b>
         <br>
         <br>
-          <input type="checkbox" id="pc1_button" onclick="Check_PC1()" checked="true"> <label class="glow-on-hover1" for="pc1_button"> Forest near Airport </label>
-          <button class="glow-on-hover" type="button" id="zoom_pc1" style="position: relative; left: 170px;" onclick="zoompc1()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+          <input type="checkbox" id="pc1_button" onclick="Check_PC1()" checked="true"> <label class="glowing-label" for="pc1_button"> Forest near Airport </label>
+          <button class="glow-on-hover" type="button" id="zoom_pc1" style="position: absolute; right: 20px;" onclick="zoompc1()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
         <br>
-          <input type="checkbox" id="pc2_button" onclick="Check_PC2()" > <label class="glow-on-hover1" for="pc2_button"> Hanger outside </label>
-          <button class="glow-on-hover" type="button" id="zoom_pc2" style="position: relative; left: 170px;" onclick="zoompc2()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+          <input type="checkbox" id="pc2_button" onclick="Check_PC2()" > <label class="glowing-label" for="pc2_button"> Hanger outside </label>
+          <button class="glow-on-hover" type="button" id="zoom_pc2" style="position: absolute; right: 20px;" onclick="zoompc2()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
         <br>
-          <input type="checkbox" id="pc3_button" onclick="Check_PC3()"> <label class="glow-on-hover1" for="pc3_button"> Hanger inside </label>
-          <button class="glow-on-hover" type="button" id="zoom_pc3" style="position: relative; left: 170px;" onclick="zoompc3()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+          <input type="checkbox" id="pc3_button" onclick="Check_PC3()"> <label class="glowing-label" for="pc3_button"> Hanger inside </label>
+          <button class="glow-on-hover" type="button" id="zoom_pc3" style="position: absolute; right: 20px;" onclick="zoompc3()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
         <br>
         <br>
           <b>Orthophotos</b>
         <br>
         <br>
-          <input type="checkbox" id="ortho1_button" onclick="Check_OP1()" > <label class="glow-on-hover1"for="ortho1_button"> NDVI of Airport</label>
-          <button class="glow-on-hover" type="button" id="zoom_ortho1" style="position: relative; left: 170px;" onclick="zoomortho1()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+          <input type="checkbox" id="ortho1_button" onclick="Check_OP1()" > <label class="glowing-label"for="ortho1_button"> NDVI of Airport</label>
+          <button class="glow-on-hover" type="button" id="zoom_ortho1" style="position: absolute; right: 20px;" onclick="zoomortho1()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
 	<br>
-          <input type="checkbox" id="ortho2_button" onclick="Check_OP2()" > <label class="glow-on-hover1" for="ortho2_button"> Cave</label>
-          <button class="glow-on-hover" type="button" id="zoom_ortho2" style="position: relative; left: 170px;" onclick="zoomortho2()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+          <input type="checkbox" id="ortho2_button" onclick="Check_OP2()" > <label class="glowing-label" for="ortho2_button"> Cave</label>
+          <button class="glow-on-hover" type="button" id="zoom_ortho2" style="position: absolute; right: 20px;" onclick="zoomortho2()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
       	<br>
         <!-- <br>
           <b>Polygon</b>

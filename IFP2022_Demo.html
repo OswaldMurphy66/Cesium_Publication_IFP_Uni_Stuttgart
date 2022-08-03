@@ -61,7 +61,7 @@ h1 {
 article {
   float: left;
   padding: 7px;
-  width: 81.5%;
+  width: 83.5%;
   height: 70%;
   background-color: #24cfe68a;
 }
@@ -69,7 +69,7 @@ article {
 /* nav bar */
 nav {
   float: right;
-  width: 15%;
+  width: 13%;
   background-image: url("img_2022/bg.png");
   background: #24cfe68a;
   padding: 1%;
@@ -176,8 +176,8 @@ section::after {
     height: 25px;
     border: none;
     outline: none;
-    color: #fff;
-    background: #111;
+    color: rgb(255, 255, 255);
+    background: rgba(219, 211, 211, 0);
     cursor: pointer;
     position: left;
     z-index: 0;
@@ -230,8 +230,8 @@ section::after {
 /* Style: checkbox */
 input[type="checkbox"] {
   position: absolute;
-  right: 60px;
-  width: 15px;
+  right: 0px;
+  width: 0px;
   height: 15px;
 }
 
@@ -245,7 +245,7 @@ input[type="checkbox"] + label {
   text-align: center;
 }
 /*
-input[type="checkbox"] + label:before {
+input[type="checkbox"]:before {
   width: 35px;
   height: 13px;
   border-radius: 30px;
@@ -256,7 +256,7 @@ input[type="checkbox"] + label:before {
   transition: background-color 0.5s linear;
 }
 
-input[type="checkbox"] + label:after {
+input[type="checkbox"]:after {
   width: 13px;
   height: 13px;
   border-radius: 30px;
@@ -272,14 +272,14 @@ input[type="checkbox"] + label:after {
 input[type="checkbox"]:checked + label:before {
   background-color: rgb(247, 163, 68);
 }
-
+*/
 input[type="checkbox"]:checked + label:after {
-  margin: 0 0 0 22px;
-  background-color: rgb(255, 255, 255);
+  margin: 0 0 0 .05px;
+  background: rgb(255, 83, 4);
+  filter: blur(1px);
 }
-
 /* Scrollbar
-/* width */
+/* width 
 ::-webkit-scrollbar {
   width: 11px;
 }

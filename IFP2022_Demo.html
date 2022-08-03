@@ -429,7 +429,7 @@ footer {
           <b>Orthophotos</b>
         <br>
         <br>
-          <input type="checkbox" id="ortho1_button" onclick="Check_OP1()" > <label class="glow-on-hover1"for="ortho1_button"> Airport brief</label>
+          <input type="checkbox" id="ortho1_button" onclick="Check_OP1()" > <label class="glow-on-hover1"for="ortho1_button"> NDVI Map</label>
           <button class="glow-on-hover" type="button" id="zoom_ortho1" style="position: absolute; right: 20px;" onclick="zoomortho1()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
 	<br>
@@ -456,7 +456,7 @@ footer {
 
         <script>
             //default access token from my ion account
-            Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxMjJlMDA0Zi01MjczLTQ3MjAtYTEyYS1mNWY3NjI0NDgxMzYiLCJpZCI6OTQzNTgsImlhdCI6MTY1MjkwMDIxN30.Irz7lx9hf8nDgJtHCD_2XXzNOY2giijRxZdNqLjD7HU';
+            Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxZTIxZDg4My00YjJkLTQzN2QtYmMxOC05Njk4ZGFkZTQzN2YiLCJpZCI6MTU1ODQsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1NjgyMTc1MjN9.UDZ_I4jPXqWed_FjHIELbp016IuCNMBzsPexMe3jM3k';
 
             // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
             var viewer = new Cesium.Viewer('cesiumContainer', {
@@ -489,26 +489,26 @@ footer {
             //add point cloud
             var pc_demo1 = viewer.scene.primitives.add(
               new Cesium.Cesium3DTileset({
-                url: Cesium.IonResource.fromAssetId(1242496),
+                url: Cesium.IonResource.fromAssetId(1242157),
               })
             );
 
             var pc_demo2 = viewer.scene.primitives.add(
               new Cesium.Cesium3DTileset({
-                url: Cesium.IonResource.fromAssetId(1242497),
+                url: Cesium.IonResource.fromAssetId(1242193),
               })
             );
 
             var pc_demo3 = viewer.scene.primitives.add(
               new Cesium.Cesium3DTileset({
-                url: Cesium.IonResource.fromAssetId(1242498),
+                url: Cesium.IonResource.fromAssetId(1242198),
               })
             );
 
 
             //add orthophotos
             var ortho_demo1 = viewer.imageryLayers.addImageryProvider(
-              new Cesium.IonImageryProvider({ assetId: 1113345 })
+              new Cesium.IonImageryProvider({ assetId: 1244440 })
             );
 
 	          var ortho_demo2 = viewer.imageryLayers.addImageryProvider(

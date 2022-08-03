@@ -412,6 +412,7 @@ footer {
 <section>
     <!-- checkboxes/buttons -->
     <nav>
+        <br>
         <b>3D Point Clouds</b>
         <br>
         <br>
@@ -442,14 +443,19 @@ footer {
           <input type="checkbox" id="ortho3_button" onclick="Check_OP3()" > <label class="glowing-label" for="ortho3_button"> Large Area</label>
           <button class="glow-on-hover" type="button" id="zoom_ortho2" style="position: absolute; right: 20px;" onclick="zoomortho3()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
       	<br>
-        <!-- <br>
+        <br>
+        <br>
           <b>Polygon</b>
         <br>
         <br>
-          <input type="checkbox" id="Runway_button" onclick="Check_RW()" > <label class="glow-on-hover1"for="Runway_button"> Anflugblatt </label>
-          <button class="glow-on-hover" type="button" id="zoom_Runway" style="position: absolute; right: 20px;" onclick="zoomRunway()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+          <input type="checkbox" id="Anflugblatt_button" onclick="Check_FP()" > <label class="glowing-label"for="Anflugblatt_button"> Anflugblatt </label>
+          <button class="glow-on-hover" type="button" id="zoom_Anflugblatt" style="position: absolute; right: 20px;" onclick="zoomAnflugblatt()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
         <br>
+          <input type="checkbox" id="Runway_button" onclick="Check_RW()" > <label class="glowing-label"for="Runway_button"> Runway </label>
+          <button class="glow-on-hover" type="button" id="zoom_Runway" style="position: absolute; right: 20px;" onclick="zoomAnflugblatt()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+        <br>
+        <!-- <br>
         <br>
         <b>NOTE: </b>Loading the trajectories takes a few moments. -->
       <br>
@@ -538,7 +544,7 @@ footer {
                 );
 
             // Add Geojsons
-            //Cesium.GeoJsonDataSource.clampToGround = true;
+            // Cesium.GeoJsonDataSource.clampToGround = true;
             var Avoid_Urban_Area = viewer.dataSources.add(
               Cesium.GeoJsonDataSource.load(
                  "GEO_json_2022/Avoid_Urban_Area_2D.geojson",
@@ -561,29 +567,53 @@ footer {
                   ),
                 );
 
-                var Landing_Area_1 = viewer.dataSources.add(
-              Cesium.GeoJsonDataSource.load(
-                 "GEO_json_2022/Landing_Area_1.geojson",
-                  {
-                    stroke: Cesium.Color.DARKGREEN,
-                    clampToGround: true,
-                    fill: Cesium.Color.CHARTREUSE.withAlpha(0.9),
-                  }
-                  ),
-                );
 
-                var Landing_Area_2 = viewer.dataSources.add(
-              Cesium.GeoJsonDataSource.load(
-                 "GEO_json_2022/Landing_Area_2.geojson",
-                  {
-                    stroke: Cesium.Color.DARKGREEN,
-                    clampToGround: true,
-                    fill: Cesium.Color.CHARTREUSE.withAlpha(0.9),
+              var Landing_Area_1 = new Cesium.GeoJsonDataSource();
+              Landing_Area_1.load(
+                "GEO_json_2022/Landing_Area_1.geojson",
+                {
+                  stroke: Cesium.Color.DARKGREEN,
+                  clampToGround: true,
+                  fill: Cesium.Color.CHARTREUSE.withAlpha(0.9),
+                }
+              );
+
+              var Landing_Area_2 = new Cesium.GeoJsonDataSource();
+              Landing_Area_2.load(
+                "GEO_json_2022/Landing_Area_2.geojson",
+                {
+                  stroke: Cesium.Color.DARKGREEN,
+                  clampToGround: true,
+                  fill: Cesium.Color.CHARTREUSE.withAlpha(0.9),
+                }
+              );
+
+              function Check_RW(){
+                //Show/hide Runway 
+                if (document.getElementById('Runway_button').checked == true) { //if the buttons is checked
+                  // Show if not shown.
+                  if (!viewer.dataSources.contains(Landing_Area_1)) {
+                    viewer.dataSources.add(Landing_Area_1);
                   }
-                  ),
-                );
-                // zoom to Landing_Area_2 on startup
-                viewer.zoomTo(Landing_Area_2);
+                  if (!viewer.dataSources.contains(Landing_Area_2)) {
+                    viewer.dataSources.add(Landing_Area_2);
+                  }
+                }
+                else {
+                  // Hide if currently shown.
+                  if (viewer.dataSources.contains(Landing_Area_1)) {
+                    viewer.dataSources.remove(Landing_Area_1);
+                  }
+                  if (viewer.dataSources.contains(Landing_Area_2)) {
+                    viewer.dataSources.remove(Landing_Area_2);
+                  }
+                }
+              };
+
+            
+
+              // zoom to Large area orthophoto on startup
+              viewer.zoomTo(ortho_demo3);
             // Adding Billboards
 
             // var enetity = viewer.entities.add({
@@ -659,16 +689,16 @@ footer {
                 ortho_demo3.show = false;// close the point cloud
               }
             }
-
-          function  Check_RW(){
-                    //Show/hide point cloud for demo
-                    if (document.getElementById('Runway_button').checked == true) { //if the buttons is checked
-                      viewer.entities.show=true;// make the point cloud visible
-                    }
-                    else {
-                      viewer.entities.show=false;// close the point cloud
-                    }
-                  }
+            
+            function  Check_FP(){
+              //Show/hide Anflugblatt 
+              if (document.getElementById('Anflugblatt_button').checked == true) { //if the buttons is checked
+                viewer.entities.show=true;
+              }
+              else {
+                viewer.entities.show=false;
+              }
+            }
 
             //function for zoom buttom
             function zoompc1(){
@@ -692,6 +722,10 @@ footer {
             };
 
             function zoomortho3(){
+              viewer.zoomTo(ortho_demo3); // zoom to the tileset
+            };
+
+            function zoomAnflugblatt(){
               viewer.zoomTo(ortho_demo3); // zoom to the tileset
             };
 

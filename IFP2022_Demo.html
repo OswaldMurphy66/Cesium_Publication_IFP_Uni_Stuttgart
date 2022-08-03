@@ -5,7 +5,7 @@
 <!-- text of browser's title/tab -->
 <title>Intergrated fieldwork Demo</title>
 <!-- icon displayed in the address bar -->
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="ifp_logo.png" type="image/x-icon" />
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -182,6 +182,7 @@ section::after {
     position: absolute;
     z-index: 0;
     border-radius: 10px;
+    text-align: center;
 }
 
 .glow-on-hover1:before {
@@ -414,15 +415,15 @@ footer {
         <br>
         <br>
           <input type="checkbox" id="pc1_button" onclick="Check_PC1()" checked="true"> <label class="glow-on-hover1" for="pc1_button"> Forest near Airport </label>
-          <button class="glow-on-hover" type="button" id="zoom_pc1" style="position: absolute; right: 20px;" onclick="zoompc1()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+          <button class="glow-on-hover" type="button" id="zoom_pc1" style="position: relative; left: 170px;" onclick="zoompc1()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
         <br>
           <input type="checkbox" id="pc2_button" onclick="Check_PC2()" > <label class="glow-on-hover1" for="pc2_button"> Hanger outside </label>
-          <button class="glow-on-hover" type="button" id="zoom_pc2" style="position: absolute; right: 20px;" onclick="zoompc2()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+          <button class="glow-on-hover" type="button" id="zoom_pc2" style="position: relative; left: 170px;" onclick="zoompc2()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
         <br>
           <input type="checkbox" id="pc3_button" onclick="Check_PC3()"> <label class="glow-on-hover1" for="pc3_button"> Hanger inside </label>
-          <button class="glow-on-hover" type="button" id="zoom_pc3" style="position: absolute; right: 20px;" onclick="zoompc3()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+          <button class="glow-on-hover" type="button" id="zoom_pc3" style="position: relative; left: 170px;" onclick="zoompc3()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
         <br>
         <br>
@@ -430,11 +431,11 @@ footer {
         <br>
         <br>
           <input type="checkbox" id="ortho1_button" onclick="Check_OP1()" > <label class="glow-on-hover1"for="ortho1_button"> NDVI of Airport</label>
-          <button class="glow-on-hover" type="button" id="zoom_ortho1" style="position: absolute; right: 20px;" onclick="zoomortho1()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+          <button class="glow-on-hover" type="button" id="zoom_ortho1" style="position: relative; left: 170px;" onclick="zoomortho1()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
 	<br>
           <input type="checkbox" id="ortho2_button" onclick="Check_OP2()" > <label class="glow-on-hover1" for="ortho2_button"> Cave</label>
-          <button class="glow-on-hover" type="button" id="zoom_ortho2" style="position: absolute; right: 20px;" onclick="zoomortho2()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+          <button class="glow-on-hover" type="button" id="zoom_ortho2" style="position: relative; left: 170px;" onclick="zoomortho2()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
       	<br>
         <!-- <br>
           <b>Polygon</b>

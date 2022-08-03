@@ -434,9 +434,13 @@ footer {
           <input type="checkbox" id="ortho1_button" onclick="Check_OP1()" > <label class="glowing-label"for="ortho1_button"> NDVI of Airport</label>
           <button class="glow-on-hover" type="button" id="zoom_ortho1" style="position: absolute; right: 20px;" onclick="zoomortho1()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
-	<br>
+	      <br>
           <input type="checkbox" id="ortho2_button" onclick="Check_OP2()" > <label class="glowing-label" for="ortho2_button"> Cave</label>
           <button class="glow-on-hover" type="button" id="zoom_ortho2" style="position: absolute; right: 20px;" onclick="zoomortho2()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+      	<br>
+        <br>
+          <input type="checkbox" id="ortho3_button" onclick="Check_OP3()" > <label class="glowing-label" for="ortho3_button"> Large Area</label>
+          <button class="glow-on-hover" type="button" id="zoom_ortho2" style="position: absolute; right: 20px;" onclick="zoomortho3()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
       	<br>
         <!-- <br>
           <b>Polygon</b>
@@ -517,7 +521,9 @@ footer {
               new Cesium.IonImageryProvider({ assetId: 1244555  })
             );
 
-
+            var ortho_demo3 = viewer.imageryLayers.addImageryProvider(//large area
+              new Cesium.IonImageryProvider({ assetId: 1244768   })
+            );
 
            // Load KML files
             var Fixed_Points = viewer.dataSources.add(
@@ -634,13 +640,23 @@ footer {
               }
             }
 
-	    function Check_OP2(){
+	          function Check_OP2(){
               //Show/hide point cloud for demo
               if (document.getElementById('ortho2_button').checked == true) { //if the buttons is checked
                 ortho_demo2.show = true;// make the point cloud visible
               }
               else {
                 ortho_demo2.show = false;// close the point cloud
+              }
+            }
+
+            function Check_OP3(){
+              //Show/hide orthophoto for demo
+              if (document.getElementById('ortho3_button').checked == true) { //if the buttons is checked
+                ortho_demo3.show = true;// make the point cloud visible
+              }
+              else {
+                ortho_demo3.show = false;// close the point cloud
               }
             }
 
@@ -671,9 +687,14 @@ footer {
               viewer.zoomTo(ortho_demo1); // zoom to the tileset
             };
 
-	    function zoomortho2(){
+	          function zoomortho2(){
               viewer.zoomTo(ortho_demo2); // zoom to the tileset
             };
+
+            function zoomortho3(){
+              viewer.zoomTo(ortho_demo3); // zoom to the tileset
+            };
+
 
 			this.viewer.scene.fxaa = false;//
 

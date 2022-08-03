@@ -509,14 +509,14 @@ footer {
 
             //add orthophotos
             var ortho_demo1 = viewer.imageryLayers.addImageryProvider(//ndvi
-              new Cesium.IonImageryProvider({ assetId: 1244440 })
+              new Cesium.IonImageryProvider({ assetId: 1245024  })
             );
 
 	          var ortho_demo2 = viewer.imageryLayers.addImageryProvider(//cave
               new Cesium.IonImageryProvider({ assetId: 1244555  })
             );
 
-            
+
 
            // Load KML files
             var Fixed_Points = viewer.dataSources.add(
@@ -797,9 +797,10 @@ footer {
               let result = []
 
               // add first part of the trajectorie (take off)
-              result.push(new Cesium.Cartesian3.fromDegrees(9.401947,48.529396,770));
-              result.push(new Cesium.Cartesian3.fromDegrees(9.394952,48.529144,755));
-              result.push(new Cesium.Cartesian3.fromDegrees(9.392929,48.529104,765));
+              result.push(new Cesium.Cartesian3.fromDegrees(9.401947,48.529396,775));
+              result.push(new Cesium.Cartesian3.fromDegrees(9.399415,48.529321,769));
+              result.push(new Cesium.Cartesian3.fromDegrees(9.394952,48.529144,780));
+              result.push(new Cesium.Cartesian3.fromDegrees(9.392929,48.529104,790));
               // crerate parabola
 
               height = Math.max(+height,100)

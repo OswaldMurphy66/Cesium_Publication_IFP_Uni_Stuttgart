@@ -480,10 +480,10 @@ footer {
               })
             });
              // Load Cesium World Terrain
-            viewer.terrainProvider = Cesium.createWorldTerrain({
-              requestWaterMask : true, // required for water effects
-              requestVertexNormals : true // required for terrain lighting
-            });
+            // viewer.terrainProvider = Cesium.createWorldTerrain({
+            //   requestWaterMask : true, // required for water effects
+            //   requestVertexNormals : true // required for terrain lighting
+            // });
              // Enable depth testing so things behind the terrain disappear.
             viewer.scene.globe.depthTestAgainstTerrain = true;
 
@@ -515,6 +515,8 @@ footer {
 	          var ortho_demo2 = viewer.imageryLayers.addImageryProvider(//cave
               new Cesium.IonImageryProvider({ assetId: 1244555  })
             );
+
+            
 
            // Load KML files
             var Fixed_Points = viewer.dataSources.add(

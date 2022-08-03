@@ -429,14 +429,14 @@ footer {
           <b>Orthophotos</b>
         <br>
         <br>
-          <input type="checkbox" id="ortho1_button" onclick="Check_OP1()" > <label class="glow-on-hover1"for="ortho1_button"> NDVI Map</label>
+          <input type="checkbox" id="ortho1_button" onclick="Check_OP1()" > <label class="glow-on-hover1"for="ortho1_button"> NDVI of Airport</label>
           <button class="glow-on-hover" type="button" id="zoom_ortho1" style="position: absolute; right: 20px;" onclick="zoomortho1()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
 	<br>
-          <input type="checkbox" id="ortho2_button" onclick="Check_OP2()" > <label class="glow-on-hover1" for="ortho2_button"> Airport brief</label>
+          <input type="checkbox" id="ortho2_button" onclick="Check_OP2()" > <label class="glow-on-hover1" for="ortho2_button"> Cave</label>
           <button class="glow-on-hover" type="button" id="zoom_ortho2" style="position: absolute; right: 20px;" onclick="zoomortho2()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
       	<br>
-        <br>
+        <!-- <br>
           <b>Polygon</b>
         <br>
         <br>
@@ -445,7 +445,7 @@ footer {
         <br>
         <br>
         <br>
-        <b>NOTE: </b>Loading the trajectories takes a few moments.
+        <b>NOTE: </b>Loading the trajectories takes a few moments. -->
       <br>
       <br>
     </nav>
@@ -456,7 +456,7 @@ footer {
 
         <script>
             //default access token from my ion account
-            Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxZTIxZDg4My00YjJkLTQzN2QtYmMxOC05Njk4ZGFkZTQzN2YiLCJpZCI6MTU1ODQsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1NjgyMTc1MjN9.UDZ_I4jPXqWed_FjHIELbp016IuCNMBzsPexMe3jM3k';
+            Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1NWVkYTg0Yi1kNjU1LTQ3YTEtOTg4Yi0zZjViNmRjNmRkZTkiLCJpZCI6MTU1ODQsImlhdCI6MTY1OTUxOTUwMX0.ubsby56FVpyyqfLL81X5zeHHcXCm7himNc5Y0JHdXvU';
 
             // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
             var viewer = new Cesium.Viewer('cesiumContainer', {
@@ -469,7 +469,7 @@ footer {
                 timeline: false,
                 animation: false,
               terrainProvider: new Cesium.CesiumTerrainProvider({
-                  url: Cesium.IonResource.fromAssetId(1),
+                  url: Cesium.IonResource.fromAssetId(1244553),//clipped dtm
               }),
               // terrainProvider: new Cesium.CesiumTerrainProvider({
               //   url: Cesium.IonResource.fromAssetId(1121911),
@@ -487,19 +487,19 @@ footer {
             viewer.scene.globe.depthTestAgainstTerrain = true;
 
             //add point cloud
-            var pc_demo1 = viewer.scene.primitives.add(
+            var pc_demo1 = viewer.scene.primitives.add(//forest
               new Cesium.Cesium3DTileset({
                 url: Cesium.IonResource.fromAssetId(1242157),
               })
             );
 
-            var pc_demo2 = viewer.scene.primitives.add(
+            var pc_demo2 = viewer.scene.primitives.add(//outside
               new Cesium.Cesium3DTileset({
                 url: Cesium.IonResource.fromAssetId(1242193),
               })
             );
 
-            var pc_demo3 = viewer.scene.primitives.add(
+            var pc_demo3 = viewer.scene.primitives.add(//inside
               new Cesium.Cesium3DTileset({
                 url: Cesium.IonResource.fromAssetId(1242198),
               })
@@ -507,12 +507,12 @@ footer {
 
 
             //add orthophotos
-            var ortho_demo1 = viewer.imageryLayers.addImageryProvider(
+            var ortho_demo1 = viewer.imageryLayers.addImageryProvider(//ndvi
               new Cesium.IonImageryProvider({ assetId: 1244440 })
             );
 
-	          var ortho_demo2 = viewer.imageryLayers.addImageryProvider(
-              new Cesium.IonImageryProvider({ assetId: 1174258 })
+	          var ortho_demo2 = viewer.imageryLayers.addImageryProvider(//cave
+              new Cesium.IonImageryProvider({ assetId: 1244555  })
             );
 
            // Load KML files

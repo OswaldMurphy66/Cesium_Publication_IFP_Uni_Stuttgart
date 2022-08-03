@@ -432,7 +432,7 @@ footer {
           <b>Orthophotos</b>
         <br>
         <br>
-          <input type="checkbox" id="ortho1_button" onclick="Check_OP1()" > <label class="glowing-label"for="ortho1_button"> NDVI of Airport</label>
+          <input type="checkbox" id="ortho1_button" onclick="Check_OP1()" > <label class="glowing-label"for="ortho1_button"> NDVI of Airfield</label>
           <button class="glow-on-hover" type="button" id="zoom_ortho1" style="position: absolute; right: 20px;" onclick="zoomortho1()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
 	      <br>
@@ -443,6 +443,14 @@ footer {
           <input type="checkbox" id="ortho3_button" onclick="Check_OP3()" > <label class="glowing-label" for="ortho3_button"> Large Area</label>
           <button class="glow-on-hover" type="button" id="zoom_ortho2" style="position: absolute; right: 20px;" onclick="zoomortho3()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
       	<br>
+        <br>
+        <br>
+          <b>Mesh</b>
+        <br>
+        <br>
+          <input type="checkbox" id="mesh1_button" onclick="Check_Mesh1()" > <label class="glowing-label"for="mesh1_button"> Farm beside Airfield</label>
+          <button class="glow-on-hover" type="button" id="zoom_mesh1" style="position: absolute; right: 20px;" onclick="zoommesh1()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+        <br>
         <br>
         <br>
           <b>Polygon</b>
@@ -498,6 +506,7 @@ footer {
              // Enable depth testing so things behind the terrain disappear.
             viewer.scene.globe.depthTestAgainstTerrain = true;
 
+            ////////////////////////////////////////////////////////////////////////////////
             //add point cloud
             var pc_demo1 = viewer.scene.primitives.add(//forest
               new Cesium.Cesium3DTileset({
@@ -518,6 +527,7 @@ footer {
             );
 
 
+            /////////////////////////////////////////////////////////////////////////
             //add orthophotos
             var ortho_demo1 = viewer.imageryLayers.addImageryProvider(//ndvi
               new Cesium.IonImageryProvider({ assetId: 1245024  })
@@ -531,18 +541,28 @@ footer {
               new Cesium.IonImageryProvider({ assetId: 1244768   })
             );
 
+
+            ///////////////////////////////////////////////////////////////
+	        	// ADD a mesh
+        		var mesh_demo1 = new Cesium.Cesium3DTileset({
+        		  url: Cesium.IonResource.fromAssetId(1245366),   // this AssetID links to the files on the cesium ion server - Hessigheim: 109738
+	        	});
+	        	viewer.scene.primitives.add(mesh_demo1);
+
+            /////////////////////////////////////////////////////////////////////////////
            // Load KML files
             var Fixed_Points = viewer.dataSources.add(
               Cesium.KmlDataSource.load(
-                 "/KML_2022/Markings_Fixed_Point_2D.kml",
-                  {
-                    stroke: Cesium.Color.DARKGREEN,
-                    clampToGround: true,
-                    fill: Cesium.Color.CHARTREUSE.withAlpha(0.9),
-                  }
-                  ),
-                );
+               "/KML_2022/Markings_Fixed_Point_2D.kml",
+                {
+                  stroke: Cesium.Color.DARKGREEN,
+                  clampToGround: true,
+                  fill: Cesium.Color.CHARTREUSE.withAlpha(0.9),
+                }
+              ),
+            );
 
+                //////////////////////////////////////////////////////////////////////////////
             // Add Geojsons
             // Cesium.GeoJsonDataSource.clampToGround = true;
             var Avoid_Urban_Area = viewer.dataSources.add(
@@ -612,6 +632,7 @@ footer {
 
             
 
+              /////////////////////////////////////////////////////////////////////////
               // zoom to Large area orthophoto on startup
               viewer.zoomTo(ortho_demo3);
             // Adding Billboards
@@ -629,6 +650,7 @@ footer {
             //     }
             // })
 
+            ///////////////////////////////////////////////////////////////////////
             //function for checkbox buttom
             function Check_PC1(){
               //Show/hide point cloud for demo
@@ -689,6 +711,16 @@ footer {
                 ortho_demo3.show = false;// close the point cloud
               }
             }
+
+            function Check_Mesh1(){
+            // Show/Hide Mesh
+		          if (document.getElementById('mesh1_button').checked == true) { // k if the buttons is checked
+	          		mesh_demo1.show = true; // make the mesh visible
+	        	  }
+		          else {
+                mesh_demo1.show = false; // hide mesh
+		          }
+            }
             
             function  Check_FP(){
               //Show/hide Anflugblatt 
@@ -700,6 +732,7 @@ footer {
               }
             }
 
+            /////////////////////////////////////////////////////////////////////////////
             //function for zoom buttom
             function zoompc1(){
               viewer.zoomTo(pc_demo1); // zoom to the tileset
@@ -725,6 +758,10 @@ footer {
               viewer.zoomTo(ortho_demo3); // zoom to the tileset
             };
 
+            function zoommesh1(){
+              viewer.zoomTo(mesh_demo1); // zoom to the tileset
+            };
+
             function zoomAnflugblatt(){
               viewer.zoomTo(ortho_demo3); // zoom to the tileset
             };
@@ -733,6 +770,7 @@ footer {
 			this.viewer.scene.fxaa = false;//
 
 
+      ////////////////////////////////////////////////////////////////////////////////////////////
              // Modifying home button position
             viewer.homeButton.viewModel.command.beforeExecute.addEventListener(function (e) {
                 e.cancel = true;
@@ -744,6 +782,7 @@ footer {
             })
 
 
+            /////////////////////////////////////////////////////////////////////////////////////////
           	//show (rough) height/latitude/longitude
             show3DCoordinates()
             function show3DCoordinates(){
@@ -803,6 +842,7 @@ footer {
               }
             }
 
+            /////////////////////////////////////////////////////////////////////////////////////////////
 	//draw lines to show flight track
 	parabolaFlowInit(this.viewer, 3);
           function parabolaFlowInit(_viewer, _num){
@@ -906,6 +946,7 @@ footer {
           }
 
 
+          ////////////////////////////////////////////////////////////////////////////////////////////////
 	//show motorflug and segelflug
           //wall effect with moving around arrows
           $.get('GEO_json_2022/Go_Around_Course_1_r.geojson', function(data) {
@@ -946,6 +987,7 @@ footer {
             })
           })
 
+          //////////////////////////////////////////////////////////////////////////////////////////////////
           //show Avoid Urban Area and Avoid Traffic Area
           $.get('GEO_json_2022/Avoid_Urban_Area_2D.geojson', function(data) {
             for (let i = 0; i < data.features[0].geometry.coordinates.length; i++) {

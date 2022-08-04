@@ -183,7 +183,7 @@ section::after {
     z-index: 0;
     border-radius: 10px;
     text-align: center;
-    
+
 }
 
 .glowing-label:before {
@@ -279,7 +279,7 @@ input[type="checkbox"]:checked + label:after {
   filter: blur(1px);
 }
 /* Scrollbar
-/* width 
+/* width
 ::-webkit-scrollbar {
   width: 11px;
 }
@@ -553,7 +553,7 @@ footer {
            // Load KML files
             var Fixed_Points = viewer.dataSources.add(
               Cesium.KmlDataSource.load(
-               "/KML_2022/Markings_Fixed_Point_2D.kml",
+               "KML_2022/Markings_Fixed_Point_2D.kml",
                 {
                   stroke: Cesium.Color.DARKGREEN,
                   clampToGround: true,
@@ -609,7 +609,7 @@ footer {
               );
 
               function Check_RW(){
-                //Show/hide Runway 
+                //Show/hide Runway
                 if (document.getElementById('Runway_button').checked == true) { //if the buttons is checked
                   // Show if not shown.
                   if (!viewer.dataSources.contains(Landing_Area_1)) {
@@ -630,7 +630,7 @@ footer {
                 }
               };
 
-            
+
 
               /////////////////////////////////////////////////////////////////////////
               // zoom to Large area orthophoto on startup
@@ -721,9 +721,9 @@ footer {
                 mesh_demo1.show = false; // hide mesh
 		          }
             }
-            
+
             function  Check_FP(){
-              //Show/hide Anflugblatt 
+              //Show/hide Anflugblatt
               if (document.getElementById('Anflugblatt_button').checked == true) { //if the buttons is checked
                 viewer.entities.show=true;
               }

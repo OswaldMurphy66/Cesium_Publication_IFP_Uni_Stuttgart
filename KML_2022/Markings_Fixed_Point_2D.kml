@@ -25,7 +25,7 @@
       <Point>
       <extrude>100</extrude>
       <altitudeMode>relativeToGround</altitudeMode>
-      <coordinates>9.39984159856699,48.5285336118899,1.5</coordinates>
+      <coordinates>9.39984159856699,48.5285336118899,0.05</coordinates>
       </Point>
   </Placemark>
   <Placemark>
@@ -42,7 +42,7 @@
       <Point>
       <extrude>100</extrude>
       <altitudeMode>relativeToGround</altitudeMode>
-      <coordinates>9.39701172609704,48.5287394076582,1.5</coordinates>
+      <coordinates>9.39701172609704,48.5287394076582,0.05</coordinates>
       </Point>
   </Placemark>
   <Placemark>
@@ -59,7 +59,7 @@
       <Point>
       <extrude>100</extrude>
       <altitudeMode>relativeToGround</altitudeMode>
-      <coordinates>9.40120712613518,48.5338931335921,1.5</coordinates>
+      <coordinates>9.40120712613518,48.5338931335921,0.05</coordinates>
       </Point>
   </Placemark>
   <Placemark>
@@ -76,7 +76,7 @@
       <Point>
       <extrude>100</extrude>
       <altitudeMode>relativeToGround</altitudeMode>
-      <coordinates>9.39801671587278,48.5286221922033,1.5</coordinates>
+      <coordinates>9.39801671587278,48.5286221922033,0.05</coordinates>
       </Point>
   </Placemark>
   <Placemark>
@@ -93,7 +93,7 @@
       <Point>
       <extrude>100</extrude>
       <altitudeMode>relativeToGround</altitudeMode>
-      <coordinates>9.39882384571264,48.5283958469733,1.5</coordinates>
+      <coordinates>9.39882384571264,48.5283958469733,0.05</coordinates>
       </Point>
   </Placemark>
   <Placemark>
@@ -110,7 +110,7 @@
       <Point>
       <extrude>100</extrude>
       <altitudeMode>relativeToGround</altitudeMode>
-<coordinates>9.40117391762546,48.5302070802252,1.5</coordinates>
+<coordinates>9.40117391762546,48.5302070802252,0.05</coordinates>
 </Point>
   </Placemark>
   <Placemark>
@@ -127,7 +127,7 @@
       <Point>
       <extrude>100</extrude>
       <altitudeMode>relativeToGround</altitudeMode>
-<coordinates>9.39941141230578,48.5296188376038,1.5</coordinates>
+<coordinates>9.39941141230578,48.5296188376038,0.05</coordinates>
 </Point>
   </Placemark>
   <Placemark>
@@ -144,7 +144,7 @@
       <Point>
       <extrude>100</extrude>
       <altitudeMode>relativeToGround</altitudeMode>
-<coordinates>9.39811160742883,48.5297317966431,1.5</coordinates>
+<coordinates>9.398082,48.529738,0.05</coordinates>
 </Point>
   </Placemark>
   <Placemark>
@@ -161,7 +161,7 @@
       <Point>
       <extrude>100</extrude>
       <altitudeMode>relativeToGround</altitudeMode>
-<coordinates>9.39530561417329,48.5293203079009,1.5</coordinates>
+<coordinates>9.39530561417329,48.5293203079009,0.05</coordinates>
 </Point>
   </Placemark>
   <Placemark>
@@ -178,7 +178,7 @@
       <Point>
       <extrude>100</extrude>
       <altitudeMode>relativeToGround</altitudeMode>
-<coordinates>9.3951769427823,48.5285250303077,1.5</coordinates>
+<coordinates>9.3951769427823,48.5285250303077,0.05</coordinates>
 </Point>
   </Placemark>
   <Placemark>
@@ -195,7 +195,7 @@
       <Point>
       <extrude>100</extrude>
       <altitudeMode>relativeToGround</altitudeMode>
-<coordinates>9.40222741754356,48.5291324790046,1.5</coordinates>
+<coordinates>9.40222741754356,48.5291324790046,0.05</coordinates>
 </Point>
   </Placemark>
 </Folder>

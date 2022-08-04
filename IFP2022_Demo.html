@@ -420,11 +420,11 @@ footer {
           <button class="glow-on-hover" type="button" id="zoom_pc1" style="position: absolute; right: 20px;" onclick="zoompc1()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
         <br>
-          <input type="checkbox" id="pc2_button" onclick="Check_PC2()" > <label class="glowing-label" for="pc2_button"> Hanger outside </label>
+          <input type="checkbox" id="pc2_button" onclick="Check_PC2()" checked="true"> <label class="glowing-label" for="pc2_button"> Hanger outside </label>
           <button class="glow-on-hover" type="button" id="zoom_pc2" style="position: absolute; right: 20px;" onclick="zoompc2()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
         <br>
-          <input type="checkbox" id="pc3_button" onclick="Check_PC3()"> <label class="glowing-label" for="pc3_button"> Hanger inside </label>
+          <input type="checkbox" id="pc3_button" onclick="Check_PC3()" checked="true"> <label class="glowing-label" for="pc3_button"> Hanger inside </label>
           <button class="glow-on-hover" type="button" id="zoom_pc3" style="position: absolute; right: 20px;" onclick="zoompc3()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
         <br>
@@ -432,15 +432,15 @@ footer {
           <b>Orthophotos</b>
         <br>
         <br>
-          <input type="checkbox" id="ortho1_button" onclick="Check_OP1()" > <label class="glowing-label"for="ortho1_button"> NDVI of Airfield</label>
+          <input type="checkbox" id="ortho1_button" onclick="Check_OP1()" checked="true"> <label class="glowing-label"for="ortho1_button"> NDVI of Airfield</label>
           <button class="glow-on-hover" type="button" id="zoom_ortho1" style="position: absolute; right: 20px;" onclick="zoomortho1()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
 	      <br>
-          <input type="checkbox" id="ortho2_button" onclick="Check_OP2()" > <label class="glowing-label" for="ortho2_button"> Cave</label>
+          <input type="checkbox" id="ortho2_button" onclick="Check_OP2()" checked="true"> <label class="glowing-label" for="ortho2_button"> Cave</label>
           <button class="glow-on-hover" type="button" id="zoom_ortho2" style="position: absolute; right: 20px;" onclick="zoomortho2()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
       	<br>
         <br>
-          <input type="checkbox" id="ortho3_button" onclick="Check_OP3()" > <label class="glowing-label" for="ortho3_button"> Large Area</label>
+          <input type="checkbox" id="ortho3_button" onclick="Check_OP3()" checked="true"> <label class="glowing-label" for="ortho3_button"> Large Area</label>
           <button class="glow-on-hover" type="button" id="zoom_ortho2" style="position: absolute; right: 20px;" onclick="zoomortho3()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
       	<br>
         <br>
@@ -456,7 +456,7 @@ footer {
           <b>Polygon</b>
         <br>
         <br>
-          <input type="checkbox" id="Anflugblatt_button" onclick="Check_FP()" > <label class="glowing-label"for="Anflugblatt_button"> Anflugblatt </label>
+          <input type="checkbox" id="Anflugblatt_button" onclick="Check_FP()" checked="true"> <label class="glowing-label"for="Anflugblatt_button"> Anflugblatt </label>
           <button class="glow-on-hover" type="button" id="zoom_Anflugblatt" style="position: absolute; right: 20px;" onclick="zoomAnflugblatt()" ><i class="fa-solid fa-magnifying-glass-plus"></i></button>
         <br>
         <br>
@@ -548,7 +548,7 @@ footer {
         		  url: Cesium.IonResource.fromAssetId(1245366),   // this AssetID links to the files on the cesium ion server - Hessigheim: 109738
 	        	});
 	        	viewer.scene.primitives.add(mesh_demo1);
-
+            mesh_demo1.show = false;
             /////////////////////////////////////////////////////////////////////////////
            // Load KML files
             var Fixed_Points = viewer.dataSources.add(
